@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { CourseListModule } from './course-list/course-list.module';
 import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.module';
+import { ToolbarModule } from './toolbar/toolbar.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.module';
     BrowserModule,
     CoreModule,
     CourseListModule,
-    BreadcrumbsModule
+    BreadcrumbsModule,
+    ToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
