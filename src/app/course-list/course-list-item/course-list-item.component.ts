@@ -7,7 +7,7 @@ import { CourseListItem } from '../course-list-item';
     styleUrls: ['./course-list-item.component.css']
 })
 export class CourseListItemComponent implements OnInit {
-    @Input() courseListItem: CourseListItem;
+    @Input() public courseListItem: CourseListItem;
     constructor() { }
 
     ngOnInit() {
