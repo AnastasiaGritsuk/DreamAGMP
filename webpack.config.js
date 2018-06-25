@@ -4,20 +4,28 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
     mode: "development",
+    context: path.resolve(__dirname, 'src'),
     entry: {
-        'polyfills': './src/polyfills.ts',
-        'app': './src/main.ts'
+        'polyfills': './polyfills.ts',
+        'app': './main.ts'
     },
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: '/',
-        filename: '[name].[hash].js'
+    resolve: {
+        extensions: ['.ts', '.js']
     },
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
     },
-    resolve: {
-        extensions: ['.ts', '.js']
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    name: "commons",
+                    chunks: "all",
+                    minSize: 0,
+                    minChunks: 2
+                }
+            }
+        }
     },
     module: {
         rules: [
@@ -49,10 +57,10 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'src/index.html'
+            hash: true
         }),
         new MiniCssExtractPlugin({
             filename: "[name].css"
-        }),
+        })
     ]
 }
