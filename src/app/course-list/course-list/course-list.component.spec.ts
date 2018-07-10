@@ -1,7 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
 import { CourseListComponent } from './course-list.component';
+import { CourseListItemComponent } from '../course-list-item/course-list-item.component';
 import { CourseService } from '../course.service';
+import { By } from '@angular/platform-browser';
 
 describe('CourseListComponent', () => {
     let component: CourseListComponent;
@@ -10,10 +12,27 @@ describe('CourseListComponent', () => {
 
     beforeEach(async(() => {
         courseServiceMock = {
-            getCourseItems: jasmine.createSpy("getCourseItems")
+            getCourseItems: jasmine.createSpy("getCourseItems").and.returnValue(
+                [
+                    {
+                        id: 1,
+                        title: "my first course",
+                        creationDate: "03.31.1990",
+                        duration: 60,
+                        description: "desc 1"
+                    },
+                    {
+                        id: 2,
+                        title: "my second course",
+                        creationDate: "03.31.1990",
+                        duration: 60,
+                        description: "desc 1"
+                    }
+                ]
+            )
         }
         TestBed.configureTestingModule({
-            declarations: [CourseListComponent],
+            declarations: [CourseListComponent, CourseListItemComponent],
             providers:[
                 {
                     provide: CourseService, 
@@ -40,4 +59,14 @@ describe('CourseListComponent', () => {
         component.ngOnInit();
         expect(courseServiceMock.getCourseItems).toHaveBeenCalled();
     });
+
+    it('should check courseListItems exist on the page', () => {
+        component.ngOnInit();
+        const debugElement: DebugElement = fixture.debugElement;
+        const itemTitleDebugElement: DebugElement = debugElement.query(By.css(".card"));
+        const itemTitle: HTMLElement = itemTitleDebugElement.nativeElement;
+
+        expect(itemTitle.attributes.length).toBe(2);
+    });
 });
+
