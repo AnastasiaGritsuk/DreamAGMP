@@ -13,7 +13,7 @@ export class CourseService {
             {
                 id: 1,
                 title: "my first course",
-                creationDate: "11/14/2013",
+                creationDate: "07/20/2018",
                 duration: 60,
                 description: "desc 1"
             },

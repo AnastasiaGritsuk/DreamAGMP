@@ -22,13 +22,12 @@ export class CourseListItemComponent implements OnInit {
     public get borderColor() {
         let creationDate = new Date(this.courseListItem.creationDate);
         let currentDate = new Date(new Date().toLocaleDateString());
+        let inTwoWeeksDate = new Date(new Date(new Date().toLocaleDateString()).setDate(currentDate.getDate() - 14));
 
-        //&& creationDate >= currentDate - 14
-        if (creationDate < currentDate) {
+        if ((creationDate < currentDate) && creationDate >= inTwoWeeksDate) {
             return 'green';
-        } else {
-            return 'red';
-        }
-
+        } else if (creationDate > currentDate) {
+            return 'blue';
+        };
     }
 }
