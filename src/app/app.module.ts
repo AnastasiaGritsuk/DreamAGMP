@@ -12,8 +12,7 @@ import { ColorBorderDirective } from './shared/colorBorder.directive';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ColorBorderDirective
+    AppComponent
   ],
   imports: [
     BrowserModule,

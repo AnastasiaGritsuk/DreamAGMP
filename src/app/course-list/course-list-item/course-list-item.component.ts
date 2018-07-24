@@ -18,4 +18,17 @@ export class CourseListItemComponent implements OnInit {
         this.delete.emit(this.courseListItem.id);
     }
 
+    // creationDate < currentDate && creationDate >= currentDate - 14days
+    public get borderColor() {
+        let creationDate = new Date(this.courseListItem.creationDate);
+        let currentDate = new Date(new Date().toLocaleDateString());
+
+        //&& creationDate >= currentDate - 14
+        if (creationDate < currentDate) {
+            return 'green';
+        } else {
+            return 'red';
+        }
+
+    }
 }
