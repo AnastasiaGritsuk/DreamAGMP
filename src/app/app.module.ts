@@ -8,9 +8,12 @@ import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.module';
 import { ToolbarModule } from './toolbar/toolbar.module';
 import { LoadMoreModule } from './load-more/load-more.module';
 
+import { ColorBorderDirective } from './shared/colorBorder.directive';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ColorBorderDirective
   ],
   imports: [
     BrowserModule,
