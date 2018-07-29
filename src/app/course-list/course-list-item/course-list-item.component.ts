@@ -9,6 +9,8 @@ import { CourseListItem } from '../course-list-item';
 export class CourseListItemComponent implements OnInit {
     @Input() public courseListItem: CourseListItem;
     @Output() public delete: EventEmitter<number> = new EventEmitter();
+
+    public topRated: boolean = true;
     constructor() { }
 
     ngOnInit() {
@@ -18,7 +20,6 @@ export class CourseListItemComponent implements OnInit {
         this.delete.emit(this.courseListItem.id);
     }
 
-    // creationDate < currentDate && creationDate >= currentDate - 14days
     public get borderColor() {
         let creationDate = new Date(this.courseListItem.creationDate);
         let currentDate = new Date(new Date().toLocaleDateString());

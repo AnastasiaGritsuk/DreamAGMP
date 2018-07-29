@@ -1,9 +1,12 @@
 <div class="card mb-1" 
-    [appColorBorder]="borderColor">
+    [appColorBorder]="borderColor"
+    [ngClass]="{top: topRated}">
     <div class="card-body">
         <div class="table mb-0 bd-highlight">
             <div class="p-2 table-cell bd-highlight">{{courseListItem.creationDate}}</div>
-            <div class="p-2 table-cell bd-highlight">{{courseListItem.title}}</div>
+            <div class="p-2 table-cell bd-highlight">{{courseListItem.title}}
+                <i *ngIf="topRated" class="fas fa-star"></i>
+            </div>
             <div class="p-2 table-cell bd-highlight">{{courseListItem.description}}</div>
             <div class="p-2 table-cell bd-highlight">{{courseListItem.duration}}</div>
             <div class="p-2 table-cell bd-highlight">
