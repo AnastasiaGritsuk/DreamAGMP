@@ -4,6 +4,7 @@ import { CourseListComponent } from './course-list/course-list.component';
 import { CourseListItemComponent } from './course-list-item/course-list-item.component';
 import { ColorBorderDirective } from '../shared/colorBorder.directive';
 import { DurationPipe } from '../shared/duration.pipe';
+import { OrderByPipe } from '../shared/orderBy.pipe';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { DurationPipe } from '../shared/duration.pipe';
       CourseListComponent, 
       CourseListItemComponent, 
       ColorBorderDirective, 
-      DurationPipe
+      DurationPipe,
+      OrderByPipe
     ],
   exports: [CourseListComponent]
 })

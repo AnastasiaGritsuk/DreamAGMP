@@ -30,6 +30,13 @@ export class CourseService {
                 creationDate: "11/14/2019",
                 duration: 150,
                 description: "desc 1"
+            },
+            {
+                id: 4,
+                title: "my fourth course",
+                creationDate: "06/03/2011",
+                duration: 45,
+                description: "desc 4"
             }
         ]
     }
