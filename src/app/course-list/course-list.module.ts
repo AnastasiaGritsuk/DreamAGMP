@@ -5,17 +5,21 @@ import { CourseListItemComponent } from './course-list-item/course-list-item.com
 import { ColorBorderDirective } from '../shared/colorBorder.directive';
 import { DurationPipe } from '../shared/duration.pipe';
 import { OrderByPipe } from '../shared/orderBy.pipe';
+import { FormsModule } from '@angular/forms';
+import { FilterPipe } from '../shared/filter.pipe';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   declarations: [
       CourseListComponent, 
       CourseListItemComponent, 
       ColorBorderDirective, 
       DurationPipe,
-      OrderByPipe
+      OrderByPipe,
+      FilterPipe
     ],
   exports: [CourseListComponent]
 })
