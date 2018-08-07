@@ -1,7 +1,10 @@
 <app-header></app-header>
 <div class="container">
-    <app-breadcrumbs></app-breadcrumbs>
-    <app-course-list></app-course-list>
-    <app-load-more></app-load-more>
+    <app-login-page *ngIf="!isAuth()" [token]="token"></app-login-page>
+    <div *ngIf="isAuth()">
+        <app-breadcrumbs></app-breadcrumbs>
+        <app-course-list></app-course-list>
+        <app-load-more></app-load-more>
+    </div>
 </div>
 <app-footer></app-footer>

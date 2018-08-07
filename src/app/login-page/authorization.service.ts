@@ -8,14 +8,17 @@ export class AuthorizationService {
     constructor() { }
 
     public login(token: string, userInfo: string): void {
-        localStorage.setItem(token, JSON.stringify(userInfo));
+        localStorage.setItem(token, JSON.parse(userInfo));
     }
 
     public logout(token: string) {
         localStorage.removeItem(token);
     }
 
-    public get isAuthenticated(): boolean {
+    public isAuthenticated(token): boolean {
+        if (localStorage.getItem(token)) {
+            return true;
+        }
         return false;
     } 
 

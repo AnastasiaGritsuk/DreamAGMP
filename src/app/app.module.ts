@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -7,20 +8,23 @@ import { CourseListModule } from './course-list/course-list.module';
 import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.module';
 import { LoadMoreModule } from './load-more/load-more.module';
 
-import { ColorBorderDirective } from './shared/colorBorder.directive';
+import { LoginPageModule } from './login-page/login-page.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    CoreModule,
-    CourseListModule,
-    BreadcrumbsModule,
-    LoadMoreModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+declarations: [
+	AppComponent
+],
+imports: [
+	BrowserModule,
+	CoreModule,
+	FormsModule,
+	CourseListModule,
+	BreadcrumbsModule,
+	LoadMoreModule,
+	LoginPageModule
+],
+providers: [],
+bootstrap: [AppComponent]
 })
+
 export class AppModule { }
