@@ -9,6 +9,8 @@ import { CourseListItem } from '../course-list-item';
 export class CourseListItemComponent implements OnInit {
     @Input() public courseListItem: CourseListItem;
     @Output() public delete: EventEmitter<number> = new EventEmitter();
+
+    public topRated: boolean = true;
     constructor() { }
 
     ngOnInit() {
@@ -18,4 +20,15 @@ export class CourseListItemComponent implements OnInit {
         this.delete.emit(this.courseListItem.id);
     }
 
+    public get borderColor() {
+        let creationDate = new Date(this.courseListItem.creationDate);
+        let currentDate = new Date(new Date().toLocaleDateString());
+        let inTwoWeeksDate = new Date(new Date(new Date().toLocaleDateString()).setDate(currentDate.getDate() - 14));
+
+        if ((creationDate < currentDate) && creationDate >= inTwoWeeksDate) {
+            return 'green';
+        } else if (creationDate > currentDate) {
+            return 'blue';
+        };
+    }
 }

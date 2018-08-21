@@ -1,6 +1,18 @@
+<div class="input-group mb-3">
+    <input type="text" class="form-control" 
+        placeholder="Search" [(ngModel)]="searchValue">
+    <div class="input-group-prepend">
+        <button class="btn btn-outline-secondary" type="button" (click)="search()">Search</button>
+    </div>
+    <button class="btn ml-2" type="button">Add course</button>
+</div>
 <div>
-    <app-course-list-item *ngFor="let item of courseList"
+    <app-course-list-item *ngFor="let item of courseListFiltered | orderBy"
         [courseListItem]="item"
         (delete)="handleDelete($event)">
     </app-course-list-item>
+    <div *ngIf="courseList.length == 0" 
+        class="alert alert-primary text-center" role="alert">
+        No data. Feel free to add new course!
+    </div>
 </div>

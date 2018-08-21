@@ -1,10 +1,16 @@
-<div class="card mb-1">
+<div class="card mb-1" 
+    [appColorBorder]="borderColor"
+    [ngClass]="{top: topRated}">
     <div class="card-body">
         <div class="table mb-0 bd-highlight">
-            <div class="p-2 table-cell bd-highlight">{{courseListItem.creationDate}}</div>
-            <div class="p-2 table-cell bd-highlight">{{courseListItem.title}}</div>
+            <div class="p-2 table-cell bd-highlight">{{courseListItem.creationDate | date: 'd.M.y'}}</div>
+            <div class="p-2 table-cell bd-highlight">{{courseListItem.title | uppercase}}
+                <i *ngIf="topRated" class="fas fa-star"></i>
+            </div>
             <div class="p-2 table-cell bd-highlight">{{courseListItem.description}}</div>
-            <div class="p-2 table-cell bd-highlight">{{courseListItem.duration}}</div>
+            <div class="p-2 table-cell bd-highlight">
+                {{courseListItem.duration | duration}}
+            </div>
             <div class="p-2 table-cell bd-highlight">
                 <button type="button" class="btn btn-primary btn-sm mr-1">Edit</button>
                 <button type="button" class="btn btn-primary btn-sm" (click)="deleteItem()">Delete</button>

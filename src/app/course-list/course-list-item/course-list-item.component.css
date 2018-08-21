@@ -11,13 +11,18 @@
 }
 
 .table-cell:nth-child(3) {
-    width: 35%;
+    width: 34%;
 }
 
 .table-cell:nth-child(4) {
-    width: 8%;
+    width: 9%;
 }
 
 .table-cell:nth-child(5) {
     width: 12%;
+}
+
+.top {
+    background-color: orange;
+    opacity: 0.6;
 }
