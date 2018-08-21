@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import {AuthorizationService} from './login-page/authorization.service';
-import { Utils } from './shared/utils';
 
 @Component({
 	selector: 'app-root',
@@ -9,16 +7,12 @@ import { Utils } from './shared/utils';
 })
 export class AppComponent {
 
-	constructor(private authorizationService: AuthorizationService) {}
+	constructor() {}
 
 	private token: string = null;
 
 	public isAuth(): boolean {
-		if (!this.token) {
-			this.token = Utils.uniqueId();
-			return false;
-		}
-		return this.authorizationService.isAuthenticated(this.token);
+		return false;
 	}
 
 }

@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="container">
-    <app-login-page *ngIf="!isAuth()" [token]="token"></app-login-page>
+    <app-login-page *ngIf="!isAuth()"></app-login-page>
     <div *ngIf="isAuth()">
         <app-breadcrumbs></app-breadcrumbs>
         <app-course-list></app-course-list>

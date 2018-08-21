@@ -13,7 +13,6 @@ export class DeleteCourseModalComponent implements OnInit {
     }
 
     public open(): void {
-        console.log("xxx");
         this.isOpened = true; 
     }
 
