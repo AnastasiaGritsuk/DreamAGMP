@@ -8,7 +8,7 @@ export class CourseService {
 
     constructor() { }
 
-    public getCourseItems(): CourseListItem[] {
+    public getList(): CourseListItem[] {
         return [
             {
                 id: 1,
@@ -39,5 +39,21 @@ export class CourseService {
                 description: "desc 4"
             }
         ]
+    }
+
+    public createCourse(): void {
+
+    }
+
+    public getItemById(id: number): void {
+
+    }
+
+    public updateItem(id: number): void {
+
+    }
+    
+    public removeItem(id: number): void {
+
     }
 }

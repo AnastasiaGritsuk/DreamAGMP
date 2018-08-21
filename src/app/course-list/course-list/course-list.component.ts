@@ -20,7 +20,7 @@ export class CourseListComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.courseList = this.courseService.getCourseItems();
+        this.courseList = this.courseService.getList();
         this.courseListFiltered = this.courseList;
     }
 
