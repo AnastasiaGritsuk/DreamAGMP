@@ -6,10 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./delete-course-modal.component.css']
 })
 export class DeleteCourseModalComponent implements OnInit {
+    public isOpened = false;
+    constructor() { }
 
-  constructor() { }
+    ngOnInit() {
+    }
 
-  ngOnInit() {
-  }
+    public open(): void {
+        console.log("xxx");
+        this.isOpened = true; 
+    }
 
+    public close(): void {
+        this.isOpened = false; 
+    }
 }
