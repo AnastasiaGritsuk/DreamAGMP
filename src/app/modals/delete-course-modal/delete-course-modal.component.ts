@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-delete-course-modal',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./delete-course-modal.component.css']
 })
 export class DeleteCourseModalComponent implements OnInit {
+    @Input() title: string;
     public isOpened = false;
     constructor() { }
 
@@ -18,5 +19,9 @@ export class DeleteCourseModalComponent implements OnInit {
 
     public close(): void {
         this.isOpened = false; 
+    }
+
+    public delete(): void {
+        console.log("delete course item");
     }
 }

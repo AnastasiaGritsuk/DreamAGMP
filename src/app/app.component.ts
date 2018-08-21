@@ -12,7 +12,7 @@ export class AppComponent {
 	private token: string = null;
 
 	public isAuth(): boolean {
-		return false;
+		return true;
 	}
 
 }
