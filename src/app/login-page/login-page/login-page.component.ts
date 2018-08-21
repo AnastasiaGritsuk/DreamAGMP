@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Utils } from '../../shared/utils';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
+
+import { AuthorizationService } from '../authorization.service';
 
 @Component({
   selector: 'app-login-page',
@@ -7,19 +8,17 @@ import { Utils } from '../../shared/utils';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
-    public utils = Utils;
-    public token: string = "";
+    @Input () token: string;
+    public username: string = "";
+    public password: string = "";
 
-    constructor() { }
+    constructor(private authorizationService: AuthorizationService) { }
 
     ngOnInit() {
     }
 
     public submit() {
         console.log("onSubmit");
-    }
-
-    public getToken() {
-        Utils.uniqueId();
+        this.authorizationService.login(this.token, JSON.stringify({username: this.username, password: this.password}));
     }
 }
