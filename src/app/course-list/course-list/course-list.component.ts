@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CourseListItem } from '../course-list-item';
 import { CourseService } from '../course.service';
 import { FilterPipe } from '../../shared/filter.pipe';
@@ -10,7 +10,7 @@ import { FilterPipe } from '../../shared/filter.pipe';
     providers: [FilterPipe]
 })
 export class CourseListComponent implements OnInit {
-    public courseList: CourseListItem[] = [];
+    @Input() courses: CourseListItem[];
     public courseListFiltered: CourseListItem[] = [];
     public searchValue:string;
 
@@ -19,17 +19,14 @@ export class CourseListComponent implements OnInit {
         private filterPipe: FilterPipe
     ) {}
 
-    ngOnInit() {
-        this.courseList = this.courseService.getList();
-        this.courseListFiltered = this.courseList;
-    }
+    ngOnInit() {}
 
     public handleDelete(id: number): void {
         console.log(id);
     }
 
     public search(): void {
-        this.courseListFiltered = this.filterPipe.transform(this.courseList, this.searchValue);
+        this.courseListFiltered = this.filterPipe.transform(this.courses, this.searchValue);
     }
 
 }
