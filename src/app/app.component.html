@@ -3,7 +3,9 @@
     <app-login-page *ngIf="!isAuth()"></app-login-page>
     <div *ngIf="isAuth()">
         <app-breadcrumbs></app-breadcrumbs>
-        <app-toolbar (onSearch)="search($event)"></app-toolbar>
+        <app-toolbar 
+            (onSearch)="search($event)"
+            (onAddCourse)="onAddCourseClick()"></app-toolbar>
         <app-course-list [courses]="coursesFiltered"></app-course-list>
         <app-add-course-page *ngIf="isAddCoursePageOpened"></app-add-course-page>
         <app-load-more></app-load-more>

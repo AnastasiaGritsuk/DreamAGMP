@@ -8,6 +8,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class ToolbarComponent implements OnInit {
 
     @Output() onSearch: EventEmitter<string> = new EventEmitter();
+    @Output() onAddCourse: EventEmitter<boolean> = new EventEmitter();
+
     public searchValue: string = "";
 
     constructor() { }
@@ -17,5 +19,10 @@ export class ToolbarComponent implements OnInit {
     
     public search(): void {
         this.onSearch.emit(this.searchValue);
+    }
+
+    public addCourse(): void {
+        console.log("addCourse");
+        this.onAddCourse.emit(true);
     }
 }

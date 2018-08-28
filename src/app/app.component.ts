@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
     
     private courses: CourseListItem[] = [];
     public coursesFiltered: CourseListItem[];
-    public isAddCoursePageOpened: boolean = true;
+    public isAddCoursePageOpened: boolean = false;
 
     public ngOnInit() {
         this.courses = this.courseService.getList();
@@ -30,5 +30,10 @@ export class AppComponent implements OnInit {
 
     public search(value: string): void {
         this.coursesFiltered = this.filterPipe.transform(this.courses, value);
+    }
+
+    public onAddCourseClick(): void {
+        console.log("xxx");
+        this.isAddCoursePageOpened = true;
     }
 }
