@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { CourseListItem } from '../course-list-item';
+import { DeleteCourseModalComponent } from '../../modals/delete-course-modal/delete-course-modal.component'
 
 @Component({
     selector: 'app-course-list-item',
@@ -10,6 +11,8 @@ export class CourseListItemComponent implements OnInit {
     @Input() public courseListItem: CourseListItem;
     @Output() public delete: EventEmitter<number> = new EventEmitter();
 
+    @ViewChild("deleteCourseModal") deleteCourseModal: DeleteCourseModalComponent;
+
     public topRated: boolean = true;
     constructor() { }
 
@@ -17,6 +20,7 @@ export class CourseListItemComponent implements OnInit {
     }
 
     public deleteItem() {
+        this.deleteCourseModal.open();
         this.delete.emit(this.courseListItem.id);
     }
 

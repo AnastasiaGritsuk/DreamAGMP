@@ -7,11 +7,13 @@ import { DurationPipe } from '../shared/duration.pipe';
 import { OrderByPipe } from '../shared/orderBy.pipe';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from '../shared/filter.pipe';
+import { ModalsModule } from '../modals/modals.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    ModalsModule
   ],
   declarations: [
       CourseListComponent, 

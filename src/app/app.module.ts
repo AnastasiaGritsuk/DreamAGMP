@@ -6,8 +6,7 @@ import { CoreModule } from './core/core.module';
 import { CourseListModule } from './course-list/course-list.module';
 import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.module';
 import { LoadMoreModule } from './load-more/load-more.module';
-
-import { ColorBorderDirective } from './shared/colorBorder.directive';
+import { LoginPageModule } from './login-page/login-page.module';
 
 @NgModule({
   declarations: [
@@ -18,9 +17,11 @@ import { ColorBorderDirective } from './shared/colorBorder.directive';
     CoreModule,
     CourseListModule,
     BreadcrumbsModule,
-    LoadMoreModule
+    LoadMoreModule,
+    LoginPageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
