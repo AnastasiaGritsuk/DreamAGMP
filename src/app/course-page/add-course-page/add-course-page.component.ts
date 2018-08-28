@@ -8,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class AddCoursePageComponent implements OnInit {
 
     constructor() { }
+    public title: string;
+    public desc: string;
+    public date: string;
+    public duration: number;
 
     ngOnInit() {
     }

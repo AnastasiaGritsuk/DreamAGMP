@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CourseListItem } from './course-list/course-list-item';
 import { CourseService } from './course-list/course.service';
 import { FilterPipe } from './shared/filter.pipe';
+import { DurationPipe } from './shared/duration.pipe';
 
 @Component({
 	selector: 'app-root',

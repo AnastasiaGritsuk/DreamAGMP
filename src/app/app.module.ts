@@ -11,21 +11,21 @@ import { ToolbarModule } from './toolbar/toolbar.module';
 import { CoursePageModule } from './course-page/course-page.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    CoreModule,
-    CourseListModule,
-    BreadcrumbsModule,
-    LoadMoreModule,
-    LoginPageModule,
-    ToolbarModule,
-    CoursePageModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    imports: [
+        BrowserModule,
+        CoreModule,
+        CourseListModule,
+        BreadcrumbsModule,
+        LoadMoreModule,
+        LoginPageModule,
+        ToolbarModule,
+        CoursePageModule
+    ],
+    declarations: [
+        AppComponent
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 
 export class AppModule { }
