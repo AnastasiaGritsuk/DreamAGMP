@@ -1,3 +1,20 @@
-<p>
-  add-course-page works!
-</p>
+<div class="course-page">
+    <div>
+        <label for="course-title">Title:</label>
+        <input id="course-title" type="text" placeholder="Video Course">
+    </div>
+    <div>
+        <label for="course-desc">Description:</label>
+        <textarea id="course-desc" type="text" placeholder="Description"></textarea>
+    </div>
+    <div>
+        <label for="course-date">Description:</label>
+        <input id="course-date" type="text" placeholder="date">
+    </div>
+    <div>
+        <label for="course-time">Duration:</label>
+        <input id="course-date" type="number" placeholder="min">
+    </div>
+    <button type="button" (click)="save()">Save</button>
+    <button type="button" (click)="cancel()">Cancel</button>
+</div>

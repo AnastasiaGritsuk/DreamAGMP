@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
     
     private courses: CourseListItem[] = [];
     public coursesFiltered: CourseListItem[];
+    public isAddCoursePageOpened: boolean = true;
 
     public ngOnInit() {
         this.courses = this.courseService.getList();

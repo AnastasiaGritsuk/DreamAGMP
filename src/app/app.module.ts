@@ -8,6 +8,7 @@ import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.module';
 import { LoadMoreModule } from './load-more/load-more.module';
 import { LoginPageModule } from './login-page/login-page.module';
 import { ToolbarModule } from './toolbar/toolbar.module';
+import { CoursePageModule } from './course-page/course-page.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ToolbarModule } from './toolbar/toolbar.module';
     BreadcrumbsModule,
     LoadMoreModule,
     LoginPageModule,
-    ToolbarModule
+    ToolbarModule,
+    CoursePageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

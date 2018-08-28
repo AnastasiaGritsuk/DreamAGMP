@@ -5,6 +5,7 @@
         <app-breadcrumbs></app-breadcrumbs>
         <app-toolbar (onSearch)="search($event)"></app-toolbar>
         <app-course-list [courses]="coursesFiltered"></app-course-list>
+        <app-add-course-page *ngIf="isAddCoursePageOpened"></app-add-course-page>
         <app-load-more></app-load-more>
     </div>
 </div>

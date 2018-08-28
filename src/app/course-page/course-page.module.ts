@@ -6,6 +6,7 @@ import { AddCoursePageComponent } from './add-course-page/add-course-page.compon
   imports: [
     CommonModule
   ],
-  declarations: [AddCoursePageComponent]
+  declarations: [AddCoursePageComponent],
+  exports: [AddCoursePageComponent]
 })
 export class CoursePageModule { }
