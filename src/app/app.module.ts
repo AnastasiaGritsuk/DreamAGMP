@@ -7,21 +7,25 @@ import { CourseListModule } from './course-list/course-list.module';
 import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.module';
 import { LoadMoreModule } from './load-more/load-more.module';
 import { LoginPageModule } from './login-page/login-page.module';
+import { ToolbarModule } from './toolbar/toolbar.module';
+import { CoursePageModule } from './course-page/course-page.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    CoreModule,
-    CourseListModule,
-    BreadcrumbsModule,
-    LoadMoreModule,
-    LoginPageModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    imports: [
+        BrowserModule,
+        CoreModule,
+        CourseListModule,
+        BreadcrumbsModule,
+        LoadMoreModule,
+        LoginPageModule,
+        ToolbarModule,
+        CoursePageModule
+    ],
+    declarations: [
+        AppComponent
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 
 export class AppModule { }

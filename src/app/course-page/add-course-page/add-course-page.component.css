@@ -1,0 +1,7 @@
+.course-page label {
+    display: block;
+}
+
+.course-page button {
+    cursor: pointer;
+}
