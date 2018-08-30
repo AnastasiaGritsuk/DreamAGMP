@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
 
     constructor() {}
     
-    public isAddCoursePageOpened: boolean = false;
+   
 
     public ngOnInit() {
         
@@ -20,9 +20,4 @@ export class AppComponent implements OnInit {
 	public isAuth(): boolean {
 		return true;
 	}
-	
-    public onAddCourseClick(): void {
-        console.log("xxx");
-        this.isAddCoursePageOpened = true;
-    }
 }

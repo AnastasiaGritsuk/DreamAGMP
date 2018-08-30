@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CourseListItem } from '../course-list-item';
 import { CourseService } from '../course.service';
 import { FilterPipe } from '../../shared/pipes/filter.pipe';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-course-list',
@@ -14,9 +15,13 @@ export class CourseListComponent implements OnInit {
     private courses: CourseListItem[];
     public coursesFiltered: CourseListItem[];
 
+    public isAddCoursePageOpened: boolean = false;
+
     constructor(
         private courseService: CourseService,
-        private filterPipe: FilterPipe) {}
+        private filterPipe: FilterPipe,
+        private router: Router,
+        private route: ActivatedRoute) {}
 
     public ngOnInit() {
         this.courses = this.courseService.getList();
@@ -29,5 +34,11 @@ export class CourseListComponent implements OnInit {
 
     public handleDelete(id: number): void {
         console.log(id);
+    }
+
+    public onAddCourseClick(): void {
+        console.log("xxx");
+        this.isAddCoursePageOpened = true;
+        this.router.navigate(['./new'], { relativeTo: this.route })
     }
 }
