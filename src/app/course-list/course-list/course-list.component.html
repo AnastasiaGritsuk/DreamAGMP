@@ -1,5 +1,8 @@
 <div>
-    <app-course-list-item *ngFor="let item of courses | orderBy"
+    <app-toolbar 
+        (onSearch)="search($event)"
+        (onAddCourse)="onAddCourseClick()"></app-toolbar>
+    <app-course-list-item *ngFor="let item of coursesFiltered | orderBy"
         [courseListItem]="item"
         (delete)="handleDelete($event)">
     </app-course-list-item>

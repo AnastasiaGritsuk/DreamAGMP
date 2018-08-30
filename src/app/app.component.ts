@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { CourseListItem } from './course-list/course-list-item';
-import { CourseService } from './course-list/course.service';
+import { Component, OnInit, ViewChildren, QueryList, ViewChild } from '@angular/core';
 import { FilterPipe } from './shared/pipes/filter.pipe';
 
 @Component({
@@ -11,27 +9,18 @@ import { FilterPipe } from './shared/pipes/filter.pipe';
 })
 export class AppComponent implements OnInit {
 
-    constructor(
-        private courseService: CourseService,
-        private filterPipe: FilterPipe) {}
+    constructor() {}
     
-    private courses: CourseListItem[] = [];
-    public coursesFiltered: CourseListItem[];
     public isAddCoursePageOpened: boolean = false;
 
     public ngOnInit() {
-        this.courses = this.courseService.getList();
-        this.coursesFiltered = this.courses;
+        
     }
 
 	public isAuth(): boolean {
 		return true;
-    }
-
-    public search(value: string): void {
-        this.coursesFiltered = this.filterPipe.transform(this.courses, value);
-    }
-
+	}
+	
     public onAddCourseClick(): void {
         console.log("xxx");
         this.isAddCoursePageOpened = true;
