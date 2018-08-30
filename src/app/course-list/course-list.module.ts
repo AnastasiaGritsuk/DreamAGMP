@@ -3,25 +3,21 @@ import { CommonModule } from '@angular/common';
 import { CourseListComponent } from './course-list/course-list.component';
 import { CourseListItemComponent } from './course-list-item/course-list-item.component';
 import { ColorBorderDirective } from '../shared/colorBorder.directive';
-import { DurationPipe } from '../shared/duration.pipe';
-import { OrderByPipe } from '../shared/orderBy.pipe';
 import { FormsModule } from '@angular/forms';
-import { FilterPipe } from '../shared/filter.pipe';
 import { ModalsModule } from '../modals/modals.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    ModalsModule
+    ModalsModule,
+    SharedModule
   ],
   declarations: [
       CourseListComponent, 
       CourseListItemComponent, 
-      ColorBorderDirective, 
-      DurationPipe,
-      OrderByPipe,
-      FilterPipe
+      ColorBorderDirective
     ],
   exports: [CourseListComponent]
 })
