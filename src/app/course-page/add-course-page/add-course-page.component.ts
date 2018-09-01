@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-add-course-page',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddCoursePageComponent implements OnInit {
 
-    constructor() { }
+    constructor(
+        private router: Router,
+        private route: ActivatedRoute) { }
+
     public title: string;
     public desc: string;
     public date: string;
@@ -21,7 +25,7 @@ export class AddCoursePageComponent implements OnInit {
     }
 
     public cancel(): void {
-
+        this.router.navigate(['/'], { relativeTo: this.route })
     }
 
 }
