@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ModalsModule } from '../modals/modals.module';
 import { SharedModule } from '../shared/shared.module';
 import { ToolbarModule } from '../toolbar/toolbar.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { ToolbarModule } from '../toolbar/toolbar.module';
     FormsModule,
     ModalsModule,
     SharedModule,
-    ToolbarModule
+    ToolbarModule,
+    RouterModule
   ],
   declarations: [
       CourseListComponent, 
