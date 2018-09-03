@@ -59,7 +59,7 @@ export class CourseService {
         course[index] = course; 
     }
     
-    public removeItem(id: number): void {
+    public removeItem(id: string): void {
         let index = this.courseList.findIndex((item)=> {
             return item.id === id;
         });
