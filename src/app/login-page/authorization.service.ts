@@ -19,12 +19,11 @@ export class AuthorizationService {
             firstName: username,
             password:password
         }
-        console.log(this.token);
         localStorage.setItem(this.token, JSON.stringify(this.user));
     }
 
-    public logout(token: string) {
-        localStorage.removeItem(token);
+    public logout() {
+        localStorage.removeItem(this.token);
     }
 
     public isAuthenticated(token): boolean {
