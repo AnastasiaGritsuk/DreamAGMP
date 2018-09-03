@@ -19,6 +19,11 @@ export class LoginPageComponent implements OnInit {
     }
 
     public submit() {
+        // temporary soluthion
+        
+        if (this.username == '' || this.password == '') {
+            return;
+        }
         this.authService.login(this.username, this.password);
         this.userLogin.emit(true);
     }

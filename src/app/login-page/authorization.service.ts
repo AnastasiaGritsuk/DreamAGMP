@@ -19,7 +19,7 @@ export class AuthorizationService {
             firstName: username,
             password:password
         }
-        
+
         localStorage.setItem(this.token, JSON.stringify(this.user));
     }
 
