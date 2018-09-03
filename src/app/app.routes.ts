@@ -13,6 +13,10 @@ export const ROUTES: Routes = [
             {
                 path: 'new',
                 component: AddCoursePageComponent
+            },
+            {
+                path: ':id',
+                component: AddCoursePageComponent
             } 
         ]
     },

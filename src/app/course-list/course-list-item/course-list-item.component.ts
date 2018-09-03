@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { CourseListItem } from '../course-list-item';
 import { DeleteCourseModalComponent } from '../../modals/delete-course-modal/delete-course-modal.component'
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-course-list-item',
@@ -15,17 +16,18 @@ export class CourseListItemComponent implements OnInit {
     @ViewChild("deleteCourseModal") deleteCourseModal: DeleteCourseModalComponent;
 
     public topRated: boolean = true;
-    constructor() { }
+    constructor(private router: Router,
+        private route: ActivatedRoute) { }
 
     ngOnInit() {
     }
 
-    public deleteItem() {
+    public deleteItem(): void {
         this.deleteCourseModal.open();
         this.delete.emit(this.courseListItem.id);
     }
 
-    public get borderColor() {
+    public get borderColor(): string {
         let creationDate = new Date(this.courseListItem.creationDate);
         let currentDate = new Date(new Date().toLocaleDateString());
         let inTwoWeeksDate = new Date(new Date(new Date().toLocaleDateString()).setDate(currentDate.getDate() - 14));
@@ -35,5 +37,9 @@ export class CourseListItemComponent implements OnInit {
         } else if (creationDate > currentDate) {
             return 'blue';
         };
+    }
+
+    public editItem(): void {
+        this.router.navigate(['./', this.courseListItem.id], { relativeTo: this.route });
     }
 }
