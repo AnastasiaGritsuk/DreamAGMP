@@ -9,6 +9,8 @@ import { FilterPipe } from './shared/pipes/filter.pipe';
 })
 export class AppComponent implements OnInit {
 
+	public isUserAuthentificated: boolean = false;
+
     constructor() {}
     
    
@@ -18,6 +20,6 @@ export class AppComponent implements OnInit {
     }
 
 	public isAuth(): boolean {
-		return true;
+		return this.isUserAuthentificated;
 	}
 }
