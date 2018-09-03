@@ -1,11 +1,23 @@
-<form>
+<div>
     <div class="form-group">
         <label for="loginInput">Login</label>
-        <input type="text" class="form-control" id="loginInput" placeholder="Login" required minlength="4">
+        <input type="text" 
+            [(ngModel)]="username"
+            class="form-control" 
+            placeholder="Login" 
+            required 
+            minlength="4">
     </div>
     <div class="form-group">
         <label for="passwordInput">Password</label>
-        <input type="password" class="form-control" id="passwordInput" placeholder="Password" required minlength="4">
+        <input type="password"
+            [(ngModel)]="password"
+            class="form-control" 
+            placeholder="Password" 
+            required 
+            minlength="4">
     </div>
-    <button type="submit" class="btn btn-primary" (click)="submit()">Enter</button>
-</form>
+    <button type="submit" 
+        class="btn btn-primary" 
+        (click)="submit()">Enter</button>
+</div>

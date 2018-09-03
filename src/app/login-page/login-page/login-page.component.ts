@@ -8,12 +8,16 @@ import { AuthorizationService } from '../authorization.service';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
+
+    public username: string = '';
+    public password: string = '';
+
     constructor() { }
 
     ngOnInit() {
     }
 
     public submit() {
-        console.log("onSubmit");
+        console.log(this.username + this.password);
     }
 }
