@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { AuthorizationService } from '../authorization.service';
 
@@ -11,6 +11,7 @@ export class LoginPageComponent implements OnInit {
 
     public username: string = '';
     public password: string = '';
+    @Output() userLogin = new EventEmitter<boolean>();
 
     constructor(private authService: AuthorizationService) { }
 
@@ -19,5 +20,10 @@ export class LoginPageComponent implements OnInit {
 
     public submit() {
         this.authService.login(this.username, this.password);
+        this.userLogin.emit(true);
+    }
+
+    public isAuth(): boolean {
+        return this.authService.isAuthenticated();
     }
 }

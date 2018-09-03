@@ -12,8 +12,7 @@ export class AppComponent implements OnInit {
 	public isUserAuthentificated: boolean = false;
 
     constructor() {}
-    
-   
+
 
     public ngOnInit() {
         
@@ -21,5 +20,13 @@ export class AppComponent implements OnInit {
 
 	public isAuth(): boolean {
 		return this.isUserAuthentificated;
+	}
+
+	public handleLogout(): void {
+		this.isUserAuthentificated = false;
+	}
+
+	public handleLogin(): void {
+		this.isUserAuthentificated = true;
 	}
 }

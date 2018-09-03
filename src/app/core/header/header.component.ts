@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { AuthorizationService } from '../../login-page/authorization.service';
 
 @Component({
     selector: 'app-header',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-    constructor() { }
+    @Output() userLogout = new EventEmitter<boolean>();
+
+    constructor(private authorizationService: AuthorizationService) { }
 
     ngOnInit() {
+    }
+
+    public logout(): void {
+        this.userLogout.emit(true);
+        this.authorizationService.logout();
     }
 
 }

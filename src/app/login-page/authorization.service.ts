@@ -19,21 +19,24 @@ export class AuthorizationService {
             firstName: username,
             password:password
         }
+        
         localStorage.setItem(this.token, JSON.stringify(this.user));
     }
 
     public logout() {
         localStorage.removeItem(this.token);
+        this.token = null;
+        this.user = null;
     }
 
-    public isAuthenticated(token): boolean {
-        if (localStorage.getItem(token)) {
+    public isAuthenticated(): boolean {
+        if (localStorage.getItem(this.token)) {
             return true;
         }
         return false;
     } 
 
-    public getUserInfo(token: string) {
-        localStorage.getItem(token);
+    public getUserInfo(): User {
+        return this.user;
     }
 }
