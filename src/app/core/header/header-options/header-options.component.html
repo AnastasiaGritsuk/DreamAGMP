@@ -1,0 +1,6 @@
+<div class="btn-group" role="group">
+    <span class="align-middle" *ngIf="user"> {{ user.firstName }}</span>
+    <button type="button" 
+        class="btn ml-1"
+        (click)="logout()">Log Off</button>
+</div>
