@@ -11,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class CourseListItemComponent implements OnInit {
     @Input() public courseListItem: CourseListItem;
-    @Output() public delete: EventEmitter<number> = new EventEmitter();
+    @Output() public delete: EventEmitter<string> = new EventEmitter();
 
     @ViewChild("deleteCourseModal") deleteCourseModal: DeleteCourseModalComponent;
 
