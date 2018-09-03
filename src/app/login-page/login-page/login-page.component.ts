@@ -12,12 +12,12 @@ export class LoginPageComponent implements OnInit {
     public username: string = '';
     public password: string = '';
 
-    constructor() { }
+    constructor(private authService: AuthorizationService) { }
 
     ngOnInit() {
     }
 
     public submit() {
-        console.log(this.username + this.password);
+        this.authService.login(this.username, this.password);
     }
 }
