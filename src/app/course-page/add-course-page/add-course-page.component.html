@@ -2,28 +2,28 @@
     <div>
         <label for="course-title">Title:</label>
         <input id="course-title" 
-            [(ngModel)]="title" 
+            [(ngModel)]="currentItem.title" 
             type="text" 
             placeholder="Video Course">
     </div>
     <div>
         <label for="course-desc">Description:</label>
         <textarea id="course-desc" 
-            [(ngModel)]="desc" 
+            [(ngModel)]="currentItem.description" 
             type="text" 
             placeholder="Description"></textarea>
     </div>
     <div>
-        <label for="course-date">Description:</label>
+        <label for="course-date">Date:</label>
         <input id="course-date" 
-            [(ngModel)]="date" 
+            [(ngModel)]="currentItem.creationDate" 
             type="text" 
             placeholder="date">
     </div>
     <div>
         <label for="course-time">Duration:</label>
         <input id="course-date" 
-            [(ngModel)]="duration" 
+            [(ngModel)]="currentItem.duration" 
             type="number" 
             placeholder="min">
         <span>{{ duration | duration}}</span>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CourseService } from '../../course-list/course.service';
 import { CourseListItem } from '../../course-list/course-list-item';
+import { Utils } from '../../shared/utils';
 
 @Component({
     selector: 'app-add-course-page',
@@ -9,32 +10,38 @@ import { CourseListItem } from '../../course-list/course-list-item';
     styleUrls: ['./add-course-page.component.css']
 })
 export class AddCoursePageComponent implements OnInit {
+    public currentItem: CourseListItem = {id:"", title: "", description:"", creationDate: "", duration: null};
     constructor(
         private router: Router,
         private route: ActivatedRoute,
         private courseService: CourseService) { }
 
-    public title: string;
-    public desc: string;
-    public date: string;
-    public duration: number;
+    private isEditMode: boolean = false;
 
     ngOnInit() {
         this.route.params.subscribe((params)=> {
-            let item: CourseListItem = this.courseService.getItemById(params.id);
-            this.title = item.title;
-            this.desc = item.description;
-            this.date = item.creationDate;
-            this.duration = item.duration;
+            if (!params.id) {
+                this.isEditMode = false;
+                return;
+            }
+            this.isEditMode = true;
+            this.currentItem = this.courseService.getItemById(params.id);
         });
     }
 
     public save(): void {
+        if(this.isEditMode) {
+            this.courseService.updateItem(this.currentItem);
+        } else {
+            this.currentItem.id = Utils.uniqueId();
+            this.courseService.createCourse(this.currentItem);
+        }
 
+        this.router.navigate(['/'], { relativeTo: this.route })
     }
 
     public cancel(): void {
-        this.router.navigate(['/'], { relativeTo: this.route })
+        this.router.navigate(['/'], { relativeTo: this.route });
     }
 
 }
