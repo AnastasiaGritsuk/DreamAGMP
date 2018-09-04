@@ -64,6 +64,6 @@ export class CourseService {
             return item.id === id;
         });
 
-        this.courseList.slice(index, 1);
+        this.courseList.splice(index, 1);
     }
 }
