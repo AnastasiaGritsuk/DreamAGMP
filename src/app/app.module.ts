@@ -12,6 +12,11 @@ import { CoursePageModule } from './course-page/course-page.module';
 
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
+import { CanActivateGuard } from './guards/canActivateGuard';
+
+const APP_PROVIDERS = [
+    CanActivateGuard
+  ];
 
 @NgModule({
     imports: [
@@ -28,7 +33,7 @@ import { ROUTES } from './app.routes';
     declarations: [
         AppComponent
     ],
-    providers: [],
+    providers: [APP_PROVIDERS],
     bootstrap: [AppComponent]
 })
 

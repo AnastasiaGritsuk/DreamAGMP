@@ -37,7 +37,6 @@ export class CourseListComponent implements OnInit {
     }
 
     public onAddCourseClick(): void {
-        console.log("xxx");
         this.isAddCoursePageOpened = true;
         this.router.navigate(['./new'], { relativeTo: this.route });
     }
