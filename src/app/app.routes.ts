@@ -12,11 +12,17 @@ export const ROUTES: Routes = [
         children: [
             {
                 path: 'new',
-                component: AddCoursePageComponent
+                component: AddCoursePageComponent,
+                data: {
+                    breadcrumb: 'new'
+                }
             },
             {
                 path: ':id',
-                component: AddCoursePageComponent
+                component: AddCoursePageComponent,
+                data: {
+                    breadcrumb: ':id'
+                }
             } 
         ]
     },
