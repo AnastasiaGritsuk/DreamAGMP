@@ -1,11 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { CourseListItem } from '../course-list-item';
 import { DeleteCourseModalComponent } from '../../modals/delete-course-modal/delete-course-modal.component'
 
 @Component({
     selector: 'app-course-list-item',
     templateUrl: './course-list-item.component.html',
-    styleUrls: ['./course-list-item.component.css']
+    styleUrls: ['./course-list-item.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseListItemComponent implements OnInit {
     @Input() public courseListItem: CourseListItem;
