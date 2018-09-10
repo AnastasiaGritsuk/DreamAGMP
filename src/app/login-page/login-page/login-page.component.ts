@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { AuthorizationService } from '../authorization.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -8,12 +9,31 @@ import { AuthorizationService } from '../authorization.service';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
-    constructor() { }
+
+    public username: string = '';
+    public password: string = '';
+    @Output() userLogin = new EventEmitter<boolean>();
+
+    constructor(
+        private authService: AuthorizationService, 
+        private router: Router,
+        private route: ActivatedRoute) { }
 
     ngOnInit() {
     }
 
     public submit() {
-        console.log("onSubmit");
+        // temporary soluthion
+
+        if (this.username == '' || this.password == '') {
+            return;
+        }
+        this.authService.login(this.username, this.password);
+        this.userLogin.emit(true);
+        this.router.navigate(['./'], { relativeTo: this.route });
+    }
+
+    public isAuth(): boolean {
+        return this.authService.isAuthenticated();
     }
 }

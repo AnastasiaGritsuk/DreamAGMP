@@ -6,13 +6,17 @@ import { ColorBorderDirective } from '../shared/colorBorder.directive';
 import { FormsModule } from '@angular/forms';
 import { ModalsModule } from '../modals/modals.module';
 import { SharedModule } from '../shared/shared.module';
+import { ToolbarModule } from '../toolbar/toolbar.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ModalsModule,
-    SharedModule
+    SharedModule,
+    ToolbarModule,
+    RouterModule
   ],
   declarations: [
       CourseListComponent, 

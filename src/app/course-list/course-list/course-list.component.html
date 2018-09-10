@@ -1,5 +1,8 @@
-<div>
-    <app-course-list-item *ngFor="let item of courses | orderBy"
+<div *ngIf="route.children.length === 0">
+    <app-toolbar 
+        (onSearch)="search($event)"
+        (onAddCourse)="onAddCourseClick()"></app-toolbar>
+    <app-course-list-item *ngFor="let item of coursesFiltered | orderBy"
         [courseListItem]="item"
         (delete)="handleDelete($event)">
     </app-course-list-item>
@@ -8,3 +11,4 @@
         No data. Feel free to add new course!
     </div>
 </div>
+<router-outlet></router-outlet>

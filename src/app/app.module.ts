@@ -10,6 +10,14 @@ import { LoginPageModule } from './login-page/login-page.module';
 import { ToolbarModule } from './toolbar/toolbar.module';
 import { CoursePageModule } from './course-page/course-page.module';
 
+import { RouterModule } from '@angular/router';
+import { ROUTES } from './app.routes';
+import { CanActivateGuard } from './guards/canActivateGuard';
+
+const APP_PROVIDERS = [
+    CanActivateGuard
+  ];
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -19,12 +27,13 @@ import { CoursePageModule } from './course-page/course-page.module';
         LoadMoreModule,
         LoginPageModule,
         ToolbarModule,
-        CoursePageModule
+        CoursePageModule,
+        RouterModule.forRoot(ROUTES, { useHash: true })
     ],
     declarations: [
         AppComponent
     ],
-    providers: [],
+    providers: [APP_PROVIDERS],
     bootstrap: [AppComponent]
 })
 

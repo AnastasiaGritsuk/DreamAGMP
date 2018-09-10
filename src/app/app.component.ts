@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseListItem } from './course-list/course-list-item';
-import { CourseService } from './course-list/course.service';
 import { FilterPipe } from './shared/pipes/filter.pipe';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-root',
@@ -11,29 +10,30 @@ import { FilterPipe } from './shared/pipes/filter.pipe';
 })
 export class AppComponent implements OnInit {
 
+	public isUserAuthentificated: boolean = false;
+
     constructor(
-        private courseService: CourseService,
-        private filterPipe: FilterPipe) {}
-    
-    private courses: CourseListItem[] = [];
-    public coursesFiltered: CourseListItem[];
-    public isAddCoursePageOpened: boolean = false;
+		private router: Router,
+        private route: ActivatedRoute) {}
+
 
     public ngOnInit() {
-        this.courses = this.courseService.getList();
-        this.coursesFiltered = this.courses;
+        if (this.isUserAuthentificated) {
+			this.router.navigate(['./'], { relativeTo: this.route });
+		} else {
+			this.router.navigate(['login'], { relativeTo: this.route });
+		}
     }
 
 	public isAuth(): boolean {
-		return true;
-    }
+		return this.isUserAuthentificated;
+	}
 
-    public search(value: string): void {
-        this.coursesFiltered = this.filterPipe.transform(this.courses, value);
-    }
+	public handleLogout(): void {
+		this.isUserAuthentificated = false;
+	}
 
-    public onAddCourseClick(): void {
-        console.log("xxx");
-        this.isAddCoursePageOpened = true;
-    }
+	public handleLogin(): void {
+		this.isUserAuthentificated = true;
+	}
 }

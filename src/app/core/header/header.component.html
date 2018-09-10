@@ -1,9 +1,7 @@
 <nav class="navbar navbar-light bg-light">
     <div class="container">
         <h4>Logo</h4>
-        <div class="btn-group" role="group">
-            <span class="align-middle">User Login</span>
-            <button type="button" class="btn ml-1">Log Off</button>
-        </div>
+        <app-header-options 
+            *ngIf="isAuth()"></app-header-options>
     </div>
 </nav>

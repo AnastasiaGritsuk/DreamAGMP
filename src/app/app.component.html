@@ -1,13 +1,10 @@
-<app-header></app-header>
+<app-header (userLogout)="handleLogout($event)"></app-header>
 <div class="container">
-    <app-login-page *ngIf="!isAuth()"></app-login-page>
+    <app-login-page *ngIf="!isAuth()" (userLogin)="handleLogin($event)"></app-login-page>
     <div *ngIf="isAuth()">
         <app-breadcrumbs></app-breadcrumbs>
-        <app-toolbar 
-            (onSearch)="search($event)"
-            (onAddCourse)="onAddCourseClick()"></app-toolbar>
-        <app-course-list [courses]="coursesFiltered"></app-course-list>
-        <app-add-course-page *ngIf="isAddCoursePageOpened"></app-add-course-page>
+        <router-outlet></router-outlet>
+        
         <app-load-more></app-load-more>
     </div>
 </div>

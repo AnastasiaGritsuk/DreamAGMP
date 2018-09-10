@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { CourseService } from '../../course-list/course.service';
+import { CourseListItem } from '../../course-list/course-list-item';
 
 @Component({
   selector: 'app-delete-course-modal',
@@ -6,9 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./delete-course-modal.component.css']
 })
 export class DeleteCourseModalComponent implements OnInit {
-    @Input() title: string;
+    @Input() item: CourseListItem;
     public isOpened = false;
-    constructor() { }
+    constructor(private courseService: CourseService) { }
 
     ngOnInit() {
     }
@@ -22,6 +24,7 @@ export class DeleteCourseModalComponent implements OnInit {
     }
 
     public delete(): void {
-        console.log("delete course item");
+        this.courseService.removeItem(this.item.id);
+        this.isOpened = false; 
     }
 }
