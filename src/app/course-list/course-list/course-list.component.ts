@@ -12,8 +12,8 @@ import { Router, ActivatedRoute } from '@angular/router';
     
 })
 export class CourseListComponent implements OnInit {
-    private courses: CourseListItem[];
-    public coursesFiltered: CourseListItem[];
+    private courses: CourseListItem[] = [];
+    public coursesFiltered: CourseListItem[] = [];
 
     public isAddCoursePageOpened: boolean = false;
 
@@ -24,8 +24,11 @@ export class CourseListComponent implements OnInit {
         private route: ActivatedRoute) {}
 
     public ngOnInit() {
-        this.courses = this.courseService.getList();
-        this.coursesFiltered = this.courses;
+        this.courseService.getList().subscribe((courses) => {
+            this.courses = courses;
+            this.coursesFiltered = this.courses;
+        });
+        
     }
 
     public search(value: string): void {

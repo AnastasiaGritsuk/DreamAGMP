@@ -14,6 +14,8 @@ import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
 import { CanActivateGuard } from './guards/canActivateGuard';
 
+import { HttpClientModule } from '@angular/common/http';
+
 const APP_PROVIDERS = [
     CanActivateGuard
   ];
@@ -28,6 +30,7 @@ const APP_PROVIDERS = [
         LoginPageModule,
         ToolbarModule,
         CoursePageModule,
+        HttpClientModule,
         RouterModule.forRoot(ROUTES, { useHash: true })
     ],
     declarations: [

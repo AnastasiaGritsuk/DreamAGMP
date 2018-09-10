@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
 import { CourseListItem } from './course-list-item';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
+
+const BASE_URL = 'http://localhost:3004/courses';
 
 @Injectable({
     providedIn: 'root'
@@ -35,10 +40,11 @@ export class CourseService {
             description: "desc 4"
         }
     ]
-    constructor() { }
+    constructor(private http: HttpClient) { }
 
-    public getList(): CourseListItem[] {
-        return this.courseList;
+    public getList(): Observable<CourseListItem[]> {
+        //return this.courseList;
+        return this.http.get<CourseListItem[]>(`${BASE_URL}`);
     }
 
     public createCourse(course: CourseListItem): void {
