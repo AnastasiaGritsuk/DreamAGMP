@@ -25,6 +25,10 @@ export class DeleteCourseModalComponent implements OnInit {
 
     public delete(): void {
         this.courseService.removeItem(this.item.id);
+        this.courseService.getList().subscribe((courses) => {
+            console.log("delete subscr " + courses);
+        });
+        
         this.isOpened = false; 
     }
 }

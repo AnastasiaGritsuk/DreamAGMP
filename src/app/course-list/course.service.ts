@@ -68,11 +68,8 @@ export class CourseService {
         course[index] = course; 
     }
     
-    public removeItem(id: string): void {
-        let index = this.courseList.findIndex((item)=> {
-            return item.id === id;
-        });
-
-        this.courseList.splice(index, 1);
+    public removeItem(id: string): Observable<CourseListItem> {
+        console.log('url ' + `${BASE_URL}/${id}`)
+        return this.http.delete<CourseListItem>(`${BASE_URL}/${id}`);
     }
 }
