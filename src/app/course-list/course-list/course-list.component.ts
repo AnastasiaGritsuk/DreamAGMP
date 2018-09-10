@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseListItem } from '../course-list-item';
 import { CourseService } from '../course.service';
-import { FilterPipe } from '../../shared/pipes/filter.pipe';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-course-list',
     templateUrl: './course-list.component.html',
-    styleUrls: ['./course-list.component.css'],
-    providers: [FilterPipe]
+    styleUrls: ['./course-list.component.css']
     
 })
 export class CourseListComponent implements OnInit {
@@ -16,7 +14,6 @@ export class CourseListComponent implements OnInit {
 
     constructor(
         private courseService: CourseService,
-        private filterPipe: FilterPipe,
         private router: Router,
         private route: ActivatedRoute) {}
 
