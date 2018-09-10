@@ -14,8 +14,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class CourseListComponent implements OnInit {
     public courses: CourseListItem[] = [];
 
-    public isAddCoursePageOpened: boolean = false;
-
     constructor(
         private courseService: CourseService,
         private filterPipe: FilterPipe,
@@ -26,7 +24,6 @@ export class CourseListComponent implements OnInit {
         this.courseService.getList().subscribe((courses) => {
             this.courses = courses;
         });
-        
     }
 
     public search(queryString: string): void {
@@ -40,7 +37,6 @@ export class CourseListComponent implements OnInit {
     }
 
     public onAddCourseClick(): void {
-        this.isAddCoursePageOpened = true;
         this.router.navigate(['./new'], { relativeTo: this.route });
     }
 }
