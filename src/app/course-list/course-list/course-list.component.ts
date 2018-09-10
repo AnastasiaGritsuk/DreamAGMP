@@ -12,8 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
     
 })
 export class CourseListComponent implements OnInit {
-    private courses: CourseListItem[] = [];
-    public coursesFiltered: CourseListItem[] = [];
+    public courses: CourseListItem[] = [];
 
     public isAddCoursePageOpened: boolean = false;
 
@@ -26,13 +25,14 @@ export class CourseListComponent implements OnInit {
     public ngOnInit() {
         this.courseService.getList().subscribe((courses) => {
             this.courses = courses;
-            this.coursesFiltered = this.courses;
         });
         
     }
 
-    public search(value: string): void {
-        this.coursesFiltered = this.filterPipe.transform(this.courses, value);
+    public search(queryString: string): void {
+        this.courseService.getFilteredList(queryString).subscribe((filteredCourses) => {
+            this.courses = filteredCourses;
+        });
     }
 
     public handleDelete(id: number): void {

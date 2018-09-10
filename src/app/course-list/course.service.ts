@@ -43,8 +43,11 @@ export class CourseService {
     constructor(private http: HttpClient) { }
 
     public getList(): Observable<CourseListItem[]> {
-        //return this.courseList;
         return this.http.get<CourseListItem[]>(`${BASE_URL}`);
+    }
+
+    public getFilteredList(textFragment: string): Observable<CourseListItem[]> {
+        return this.http.get<CourseListItem[]>(`${BASE_URL}`, {params: {textFragment}});
     }
 
     public createCourse(course: CourseListItem): void {
