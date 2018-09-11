@@ -31,12 +31,14 @@ export class AddCoursePageComponent implements OnInit {
 
     public save(): void {
         if(this.isEditMode) {
-            this.courseService.updateItem(this.currentItem);
+            this.courseService.updateItem(this.currentItem).subscribe((courses)=> {
+                console.dir(courses);
+            });
         } else {
             this.currentItem.id = Utils.uniqueId();
             this.courseService.createCourse(this.currentItem).subscribe((courses)=> {
                 console.dir(courses);
-            });;
+            });
         }
 
         this.router.navigate(['/'], { relativeTo: this.route })

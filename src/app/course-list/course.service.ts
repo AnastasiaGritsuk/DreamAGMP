@@ -60,12 +60,8 @@ export class CourseService {
         })
     }
 
-    public updateItem(course: CourseListItem): void {
-        let index = this.courseList.findIndex((item)=> {
-            return item.id === course.id;
-        });
-
-        course[index] = course; 
+    public updateItem(course: CourseListItem):  Observable<CourseListItem> {
+        return this.http.put<CourseListItem>(`${BASE_URL}`, course);
     }
     
     public removeItem(id: string): Observable<CourseListItem> {
