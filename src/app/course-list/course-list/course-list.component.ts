@@ -36,4 +36,10 @@ export class CourseListComponent implements OnInit {
     public onAddCourseClick(): void {
         this.router.navigate(['./new'], { relativeTo: this.route });
     }
+
+    public handleWasDeletedParent() {
+        this.courseService.getList().subscribe((courses) => {
+            this.courses = courses;
+        });
+    }
 }

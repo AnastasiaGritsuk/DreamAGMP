@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CourseService } from '../../course-list/course.service';
 import { CourseListItem } from '../../course-list/course-list-item';
 
@@ -9,6 +9,8 @@ import { CourseListItem } from '../../course-list/course-list-item';
 })
 export class DeleteCourseModalComponent implements OnInit {
     @Input() item: CourseListItem;
+    @Output() public wasDeleted: EventEmitter<boolean> = new EventEmitter();
+
     public isOpened = false;
     constructor(private courseService: CourseService) { }
 
@@ -24,9 +26,8 @@ export class DeleteCourseModalComponent implements OnInit {
     }
 
     public delete(): void {
-        this.courseService.removeItem(this.item.id);
-        this.courseService.getList().subscribe((courses) => {
-            console.log("delete subscr " + courses);
+        this.courseService.removeItem(this.item.id).subscribe((courses)=> {
+            this.wasDeleted.emit(true);
         });
         
         this.isOpened = false; 

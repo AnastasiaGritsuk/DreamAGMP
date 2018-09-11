@@ -25,15 +25,13 @@ module.exports = (server) => {
 	});
 
 	router.delete('/courses/:id', (req, res, next) => {
-		console.log("from server id " + id);
-		console.log("from server params id " + req.query['id']);
 		let coursesDB = server.db.getState().courses;
 		let index = coursesDB.findIndex((item)=> {
-            return item.id === req.query['id'];
+            return item.id === req.params.id;
 		});
 				
-		server.db.getState().courses = server.db.getState().courses.splice(index, 1);
-		res.json({text:"200"});
+		server.db.getState().courses.splice(index, 1);
+		res.json(server.db.getState().courses);
 	});
 
 	return router;

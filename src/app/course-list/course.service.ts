@@ -69,7 +69,6 @@ export class CourseService {
     }
     
     public removeItem(id: string): Observable<CourseListItem> {
-        console.log('url ' + `${BASE_URL}/${id}`)
         return this.http.delete<CourseListItem>(`${BASE_URL}/${id}`);
     }
 }

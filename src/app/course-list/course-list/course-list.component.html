@@ -4,7 +4,8 @@
         (onAddCourse)="onAddCourseClick()"></app-toolbar>
     <app-course-list-item *ngFor="let item of courses | orderBy"
         [courseListItem]="item"
-        (delete)="handleDelete($event)">
+        (delete)="handleDelete($event)"
+        (wasDeletedParent)= "handleWasDeletedParent()">
     </app-course-list-item>
     <div *ngIf="courses.length == 0" 
         class="alert alert-primary text-center" role="alert">

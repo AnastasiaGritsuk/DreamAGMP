@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class CourseListItemComponent implements OnInit {
     @Input() public courseListItem: CourseListItem;
     @Output() public delete: EventEmitter<string> = new EventEmitter();
+    @Output() public wasDeletedParent: EventEmitter<boolean> = new EventEmitter();
 
     @ViewChild("deleteCourseModal") deleteCourseModal: DeleteCourseModalComponent;
 
@@ -41,5 +42,9 @@ export class CourseListItemComponent implements OnInit {
 
     public editItem(): void {
         this.router.navigate(['./', this.courseListItem.id], { relativeTo: this.route });
+    }
+
+    public handleWasDeleted() {
+        this.wasDeletedParent.emit(true);
     }
 }
