@@ -50,8 +50,8 @@ export class CourseService {
         return this.http.get<CourseListItem[]>(`${BASE_URL}`, {params: {textFragment}});
     }
 
-    public createCourse(course: CourseListItem): void {
-        this.courseList.push(course);
+    public createCourse(course: CourseListItem): Observable<CourseListItem> {
+        return this.http.post<CourseListItem>(`${BASE_URL}`, course);
     }
 
     public getItemById(id: string): CourseListItem {

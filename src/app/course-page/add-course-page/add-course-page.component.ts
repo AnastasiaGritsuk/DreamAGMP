@@ -34,7 +34,9 @@ export class AddCoursePageComponent implements OnInit {
             this.courseService.updateItem(this.currentItem);
         } else {
             this.currentItem.id = Utils.uniqueId();
-            this.courseService.createCourse(this.currentItem);
+            this.courseService.createCourse(this.currentItem).subscribe((courses)=> {
+                console.dir(courses);
+            });;
         }
 
         this.router.navigate(['/'], { relativeTo: this.route })

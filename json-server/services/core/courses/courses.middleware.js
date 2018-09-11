@@ -24,6 +24,13 @@ module.exports = (server) => {
 		res.json(courses);
 	});
 
+	router.post('/courses', (req, res, next) => {
+		let coursesDB = server.db.getState().courses;
+		coursesDB.push(req.body);
+				
+		res.json(server.db.getState().courses);
+	});
+
 	router.delete('/courses/:id', (req, res, next) => {
 		let coursesDB = server.db.getState().courses;
 		let index = coursesDB.findIndex((item)=> {
