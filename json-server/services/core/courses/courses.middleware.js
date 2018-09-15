@@ -6,8 +6,6 @@ let failedRequestsCount = 0;
 module.exports = (server) => {
 
 	router.get('/courses', (req, res, next) => {
-		console.log("'/courses'");
-
 		let coursesDB = server.db.getState().courses;
 
 		if (req.query['textFragment'] === 'error' && failedRequestsCount <= 3) {
@@ -19,7 +17,9 @@ module.exports = (server) => {
 			return course.title.toUpperCase().indexOf(req.query['textFragment'].toUpperCase()) >= 0;
 		}) : coursesDB;
 
-		courses = courses.slice(0, req.query['count']);
+		courses = req.query['startIndex'] && req.query['countToLoad'] ? 
+			courses.slice(req.query['startIndex'], req.query['countToLoad'])
+			: coursesDB;
 
 		res.json(courses);
 	});

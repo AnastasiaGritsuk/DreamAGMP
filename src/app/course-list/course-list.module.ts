@@ -8,6 +8,7 @@ import { ModalsModule } from '../modals/modals.module';
 import { SharedModule } from '../shared/shared.module';
 import { ToolbarModule } from '../toolbar/toolbar.module';
 import { RouterModule } from '@angular/router';
+import { LoadMoreModule } from '../load-more/load-more.module';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { RouterModule } from '@angular/router';
     ModalsModule,
     SharedModule,
     ToolbarModule,
+    LoadMoreModule,
     RouterModule
   ],
   declarations: [

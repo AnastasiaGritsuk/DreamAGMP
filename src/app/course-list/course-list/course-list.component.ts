@@ -11,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class CourseListComponent implements OnInit {
     public courses: CourseListItem[] = [];
+    private maxCoursesCount: number = 5;
 
     constructor(
         private courseService: CourseService,
@@ -18,7 +19,7 @@ export class CourseListComponent implements OnInit {
         private route: ActivatedRoute) {}
 
     public ngOnInit() {
-        this.courseService.getList().subscribe((courses) => {
+        this.courseService.getListLimited(0, this.maxCoursesCount).subscribe((courses) => {
             this.courses = courses;
         });
     }
@@ -41,5 +42,9 @@ export class CourseListComponent implements OnInit {
         this.courseService.getList().subscribe((courses) => {
             this.courses = courses;
         });
+    }
+
+    public get isLoadMore(): boolean {
+        return this.courses.length > this.maxCoursesCount;
     }
 }
