@@ -19,7 +19,7 @@ export class CourseListComponent implements OnInit {
         private route: ActivatedRoute) {}
 
     public ngOnInit() {
-        this.courseService.getListLimited(0, this.maxCoursesCount).subscribe((courses) => {
+        this.courseService.getList(this.maxCoursesCount.toString()).subscribe((courses) => {
             this.courses = courses;
         });
     }

@@ -17,8 +17,10 @@ module.exports = (server) => {
 			return course.title.toUpperCase().indexOf(req.query['textFragment'].toUpperCase()) >= 0;
 		}) : coursesDB;
 
-		courses = req.query['startIndex'] && req.query['countToLoad'] ? 
-			courses.slice(req.query['startIndex'], req.query['countToLoad'])
+		let count = parseInt(req.query['countToLoad']);
+
+		courses = req.query['countToLoad'] ? 
+			courses.slice(0, count)
 			: coursesDB;
 
 		res.json(courses);

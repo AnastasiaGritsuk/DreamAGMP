@@ -42,12 +42,8 @@ export class CourseService {
     ]
     constructor(private http: HttpClient) { }
 
-    public getList(): Observable<CourseListItem[]> {
-        return this.http.get<CourseListItem[]>(`${BASE_URL}`);
-    }
-
-    public getListLimited(startIndex, countToLoad): Observable<CourseListItem[]> {
-        return this.http.get<CourseListItem[]>(`${BASE_URL}`, {params: {startIndex, countToLoad}});
+    public getList(countToLoad?: string): Observable<CourseListItem[]> {
+        return this.http.get<CourseListItem[]>(`${BASE_URL}`, {params: {countToLoad}});
     }
 
     public getFilteredList(textFragment: string): Observable<CourseListItem[]> {
