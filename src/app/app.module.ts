@@ -14,7 +14,8 @@ import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
 import { CanActivateGuard } from './guards/canActivateGuard';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './login-page/auth-interceptor';
 
 const APP_PROVIDERS = [
     CanActivateGuard
@@ -36,7 +37,10 @@ const APP_PROVIDERS = [
     declarations: [
         AppComponent
     ],
-    providers: [APP_PROVIDERS],
+    providers: [
+        APP_PROVIDERS,
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    ],
     bootstrap: [AppComponent]
 })
 

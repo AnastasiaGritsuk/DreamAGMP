@@ -2,14 +2,24 @@ import { Injectable } from '@angular/core';
 import { CourseListItem } from './course-list-item';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { AuthorizationService } from '../login-page/authorization.service';
 
 
 const BASE_URL = 'http://localhost:3004/courses';
+
+const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Authorization': 'my-auth-token'
+    })
+  };
 
 @Injectable({
     providedIn: 'root'
 })
 export class CourseService {
+
     private courseList: CourseListItem[] = [
         {
             id: "1",
@@ -40,7 +50,9 @@ export class CourseService {
             description: "desc 4"
         }
     ]
-    constructor(private http: HttpClient) { }
+    constructor(
+        private http: HttpClient,
+        private auth: AuthorizationService) { }
 
     public getList(countToLoad?: string): Observable<CourseListItem[]> {
         return this.http.get<CourseListItem[]>(`${BASE_URL}`, {params: {countToLoad}});

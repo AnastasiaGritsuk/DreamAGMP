@@ -39,4 +39,12 @@ export class AuthorizationService {
     public getUserInfo(): User {
         return this.user;
     }
+
+    public getToken(): string {
+        return this.token;
+    }
+
+    public setToken(token: string): string {
+        return this.token = token;
+    }
 }
