@@ -25,7 +25,9 @@ export class AddCoursePageComponent implements OnInit {
                 return;
             }
             this.isEditMode = true;
-            this.currentItem = this.courseService.getItemById(params.id);
+            this.courseService.getItemById(params.id).subscribe((course) => {
+                this.currentItem = course;
+            });
         });
     }
 
