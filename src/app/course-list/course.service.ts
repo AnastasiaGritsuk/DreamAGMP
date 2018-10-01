@@ -24,8 +24,8 @@ export class CourseService {
         return this.http.get<CourseListItem[]>(`${BASE_URL}`, {params: {countToLoad}});
     }
 
-    public getFilteredList(textFragment: string): Observable<CourseListItem[]> {
-        return this.http.get<CourseListItem[]>(`${BASE_URL}`, {params: {textFragment}});
+    public getFilteredList(textFragment: string, countToLoad: string): Observable<CourseListItem[]> {
+        return this.http.get<CourseListItem[]>(`${BASE_URL}`, {params: {textFragment, countToLoad}});
     }
 
     public createCourse(course: CourseListItem): Observable<CourseListItem> {

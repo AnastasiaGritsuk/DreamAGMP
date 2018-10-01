@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
     selector: 'app-toolbar',
@@ -7,22 +8,26 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-    @Output() onSearch: EventEmitter<string> = new EventEmitter();
     @Output() onAddCourse: EventEmitter<boolean> = new EventEmitter();
 
-    public searchValue: string = "";
+    private searchValue$: BehaviorSubject<string> = new BehaviorSubject("");
 
     constructor() { }
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
     
-    public search(): void {
-        this.onSearch.emit(this.searchValue);
+    public search(substr: string): void {
+        if (substr.length > 2 || substr == "") {
+            this.searchValue$.next(substr);
+        }
     }
 
     public addCourse(): void {
         console.log("addCourse");
         this.onAddCourse.emit(true);
+    }
+
+    public serchValue() {
+        return this.searchValue$.asObservable();
     }
 }

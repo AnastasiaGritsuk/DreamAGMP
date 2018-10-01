@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { CourseListItem } from '../course-list-item';
 import { CourseService } from '../course.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToolbarComponent } from '../../toolbar/toolbar/toolbar.component';
 
 @Component({
     selector: 'app-course-list',
@@ -9,9 +10,11 @@ import { Router, ActivatedRoute } from '@angular/router';
     styleUrls: ['./course-list.component.css']
     
 })
-export class CourseListComponent implements OnInit {
+export class CourseListComponent implements OnInit, AfterViewInit {
     public courses: CourseListItem[] = [];
     private maxCoursesCount: number = 5;
+
+    @ViewChild("toolbar") toolbarComponent : ToolbarComponent;
 
     constructor(
         private courseService: CourseService,
@@ -24,9 +27,9 @@ export class CourseListComponent implements OnInit {
         });
     }
 
-    public search(queryString: string): void {
-        this.courseService.getFilteredList(queryString).subscribe((filteredCourses) => {
-            this.courses = filteredCourses;
+    public ngAfterViewInit() {
+        this.toolbarComponent.serchValue().subscribe((queryString) => {
+            this.search(queryString);
         });
     }
 
@@ -46,5 +49,11 @@ export class CourseListComponent implements OnInit {
 
     public get isLoadMore(): boolean {
         return this.courses.length > this.maxCoursesCount;
+    }
+
+    private search(queryString: string): void {
+        this.courseService.getFilteredList(queryString, this.maxCoursesCount.toString()).subscribe((filteredCourses) => {
+            this.courses = filteredCourses;
+        });
     }
 }

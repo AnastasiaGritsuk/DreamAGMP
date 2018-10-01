@@ -13,7 +13,7 @@ module.exports = (server) => {
 			res.status('500').send('Something went wrong');
 		}
 
-		let courses = req.query['textFragment'] ? coursesDB.filter((course) => {
+		let courses = req.query['textFragment'] || req.query['textFragment'] == "" ? coursesDB.filter((course) => {
 			return course.title.toUpperCase().indexOf(req.query['textFragment'].toUpperCase()) >= 0;
 		}) : coursesDB;
 
