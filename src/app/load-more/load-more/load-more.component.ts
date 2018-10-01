@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CourseService } from '../../course-list/course.service';
 
 @Component({
     selector: 'app-load-more',
@@ -6,14 +7,21 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./load-more.component.css']
 })
 export class LoadMoreComponent implements OnInit {
+    private portion: number = 0;
+    private maxCount: number = 5;
 
-    constructor() { }
+    constructor(private courseService: CourseService) { }
 
     ngOnInit() {
     }
 
     public loadMore() {
-        console.log("load more");
+        this.portion = this.portion + 1;
+        let startIndex = this.portion * this.maxCount;
+        let count = startIndex + this.maxCount;
+        this.courseService.getList(count.toString()).subscribe((courses)=> {
+            console.log(courses);
+        });
     }
 
 }

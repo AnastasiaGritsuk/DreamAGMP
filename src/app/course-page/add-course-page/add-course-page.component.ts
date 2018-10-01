@@ -25,16 +25,22 @@ export class AddCoursePageComponent implements OnInit {
                 return;
             }
             this.isEditMode = true;
-            this.currentItem = this.courseService.getItemById(params.id);
+            this.courseService.getItemById(params.id).subscribe((course) => {
+                this.currentItem = course;
+            });
         });
     }
 
     public save(): void {
         if(this.isEditMode) {
-            this.courseService.updateItem(this.currentItem);
+            this.courseService.updateItem(this.currentItem).subscribe((courses)=> {
+                console.dir(courses);
+            });
         } else {
             this.currentItem.id = Utils.uniqueId();
-            this.courseService.createCourse(this.currentItem);
+            this.courseService.createCourse(this.currentItem).subscribe((courses)=> {
+                console.dir(courses);
+            });
         }
 
         this.router.navigate(['/'], { relativeTo: this.route })

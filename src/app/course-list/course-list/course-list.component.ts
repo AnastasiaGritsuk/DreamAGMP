@@ -1,35 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseListItem } from '../course-list-item';
 import { CourseService } from '../course.service';
-import { FilterPipe } from '../../shared/pipes/filter.pipe';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-course-list',
     templateUrl: './course-list.component.html',
-    styleUrls: ['./course-list.component.css'],
-    providers: [FilterPipe]
+    styleUrls: ['./course-list.component.css']
     
 })
 export class CourseListComponent implements OnInit {
-    private courses: CourseListItem[];
-    public coursesFiltered: CourseListItem[];
-
-    public isAddCoursePageOpened: boolean = false;
+    public courses: CourseListItem[] = [];
+    private maxCoursesCount: number = 5;
 
     constructor(
         private courseService: CourseService,
-        private filterPipe: FilterPipe,
         private router: Router,
         private route: ActivatedRoute) {}
 
     public ngOnInit() {
-        this.courses = this.courseService.getList();
-        this.coursesFiltered = this.courses;
+        this.courseService.getList(this.maxCoursesCount.toString()).subscribe((courses) => {
+            this.courses = courses;
+        });
     }
 
-    public search(value: string): void {
-        this.coursesFiltered = this.filterPipe.transform(this.courses, value);
+    public search(queryString: string): void {
+        this.courseService.getFilteredList(queryString).subscribe((filteredCourses) => {
+            this.courses = filteredCourses;
+        });
     }
 
     public handleDelete(id: number): void {
@@ -37,7 +35,16 @@ export class CourseListComponent implements OnInit {
     }
 
     public onAddCourseClick(): void {
-        this.isAddCoursePageOpened = true;
         this.router.navigate(['./new'], { relativeTo: this.route });
+    }
+
+    public handleWasDeletedParent() {
+        this.courseService.getList().subscribe((courses) => {
+            this.courses = courses;
+        });
+    }
+
+    public get isLoadMore(): boolean {
+        return this.courses.length > this.maxCoursesCount;
     }
 }

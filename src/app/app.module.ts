@@ -14,6 +14,9 @@ import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
 import { CanActivateGuard } from './guards/canActivateGuard';
 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './login-page/auth-interceptor';
+
 const APP_PROVIDERS = [
     CanActivateGuard
   ];
@@ -28,12 +31,16 @@ const APP_PROVIDERS = [
         LoginPageModule,
         ToolbarModule,
         CoursePageModule,
+        HttpClientModule,
         RouterModule.forRoot(ROUTES, { useHash: true })
     ],
     declarations: [
         AppComponent
     ],
-    providers: [APP_PROVIDERS],
+    providers: [
+        APP_PROVIDERS,
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    ],
     bootstrap: [AppComponent]
 })
 
