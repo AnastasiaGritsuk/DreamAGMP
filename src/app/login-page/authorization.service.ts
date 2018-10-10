@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Utils } from '../shared/utils';
 import { User } from '../model/user';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+const BASE_URL = 'http://localhost:3004/courses';
 
 @Injectable({
   providedIn: 'root'
@@ -10,17 +14,25 @@ export class AuthorizationService {
     public token: string = '';
     public user: User;
 
-    constructor() { }
+    constructor(
+        private http: HttpClient
+    ) { }
 
-    public login(username: string, password: string): void {
-        this.token = Utils.uniqueId();
+    public login(username: string, password: string): Observable<User> {
+        let httpOptions = {
+            headers: new HttpHeaders({
+              'Content-Type':  'application/json',
+              'Authorization': 'Bacis ' + btoa(username + ':' + password)
+            })
+          };
+        //this.token = Utils.uniqueId();
         this.user = {
             id: this.token,
-            firstName: username,
-            password:password
+            firstName: username
         }
+        return this.http.post<User>(`${BASE_URL}`, {}, httpOptions);
 
-        localStorage.setItem(this.token, JSON.stringify(this.user));
+        //localStorage.setItem(this.token, JSON.stringify(this.user));
     }
 
     public logout() {
