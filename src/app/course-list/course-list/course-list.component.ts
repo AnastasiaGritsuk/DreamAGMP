@@ -3,6 +3,7 @@ import { CourseListItem } from '../course-list-item';
 import { CourseService } from '../course.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToolbarComponent } from '../../toolbar/toolbar/toolbar.component';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
     selector: 'app-course-list',
@@ -28,7 +29,9 @@ export class CourseListComponent implements OnInit, AfterViewInit {
     }
 
     public ngAfterViewInit() {
-        this.toolbarComponent.serchValue().subscribe((queryString) => {
+        this.toolbarComponent.serchValue.pipe(
+            debounceTime(500)
+        ).subscribe((queryString) => {
             this.search(queryString);
         });
     }

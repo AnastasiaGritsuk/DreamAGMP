@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
     selector: 'app-toolbar',
@@ -27,7 +27,7 @@ export class ToolbarComponent implements OnInit {
         this.onAddCourse.emit(true);
     }
 
-    public serchValue() {
+    public get serchValue(): Observable<string> {
         return this.searchValue$.asObservable();
     }
 }
