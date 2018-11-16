@@ -10,9 +10,10 @@ export class CanActivateGuard implements CanActivate {
     canActivate(): Observable<boolean> | Promise<boolean> | boolean {
         if (!this.authService.isAuthenticated) {
             this.router.navigate(['login']);
+            console.log("canActivate false")
             return false;
         }
-
+        console.log("canActivate true");
         return true;
     }
 } 

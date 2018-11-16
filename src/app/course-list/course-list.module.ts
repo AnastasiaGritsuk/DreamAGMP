@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ToolbarModule } from '../toolbar/toolbar.module';
 import { RouterModule } from '@angular/router';
 import { LoadMoreModule } from '../load-more/load-more.module';
+import { BreadcrumbsModule } from '../breadcrumbs/breadcrumbs.module';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { LoadMoreModule } from '../load-more/load-more.module';
     SharedModule,
     ToolbarModule,
     LoadMoreModule,
+    BreadcrumbsModule,
     RouterModule
   ],
   declarations: [

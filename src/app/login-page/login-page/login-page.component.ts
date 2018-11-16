@@ -12,7 +12,6 @@ export class LoginPageComponent implements OnInit {
 
     public username: string = '';
     public password: string = '';
-    @Output() userLogin = new EventEmitter<boolean>();
 
     constructor(
         private authService: AuthorizationService, 
@@ -29,12 +28,9 @@ export class LoginPageComponent implements OnInit {
             return;
         }
         this.authService.login(this.username, this.password).subscribe((response)=> {
-            this.router.navigate(['./'], { relativeTo: this.route });
+            console.log("xxx");
+            this.router.navigate(['/'], { relativeTo: this.route });
         });
         
-    }
-
-    public isAuth(): boolean {
-        return this.authService.isAuthenticated;
     }
 }

@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { CourseListModule } from './course-list/course-list.module';
-import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.module';
 import { LoadMoreModule } from './load-more/load-more.module';
 import { LoginPageModule } from './login-page/login-page.module';
 import { ToolbarModule } from './toolbar/toolbar.module';
@@ -26,7 +25,6 @@ const APP_PROVIDERS = [
         BrowserModule,
         CoreModule,
         CourseListModule,
-        BreadcrumbsModule,
         LoadMoreModule,
         LoginPageModule,
         ToolbarModule,
