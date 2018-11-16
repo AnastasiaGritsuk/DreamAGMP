@@ -28,7 +28,6 @@ export class LoginPageComponent implements OnInit {
             return;
         }
         this.authService.login(this.username, this.password).subscribe((response)=> {
-            console.log("xxx");
             this.router.navigate(['/'], { relativeTo: this.route });
         });
         

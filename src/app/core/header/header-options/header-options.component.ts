@@ -11,8 +11,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class HeaderOptionsComponent implements OnInit {
     public user: User;
     
-    @Output() userLogout = new EventEmitter<boolean>();
-
     constructor(private authorizationService: AuthorizationService,
         private router: Router,
         private route: ActivatedRoute) { }
@@ -22,7 +20,6 @@ export class HeaderOptionsComponent implements OnInit {
     }
 
     public logout(): void {
-        this.userLogout.emit(true);
         this.authorizationService.logout();
         this.router.navigate(['login'], { relativeTo: this.route });
     }
