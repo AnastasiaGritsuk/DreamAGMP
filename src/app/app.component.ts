@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FilterPipe } from './shared/pipes/filter.pipe';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AuthorizationService } from './login-page/authorization.service';
 
 @Component({
 	selector: 'app-root',
@@ -14,11 +15,12 @@ export class AppComponent implements OnInit {
 
     constructor(
 		private router: Router,
-        private route: ActivatedRoute) {}
+		private route: ActivatedRoute,
+		private readonly authorizationService: AuthorizationService) {}
 
 
     public ngOnInit() {
-        if (this.isUserAuthentificated) {
+        if (this.authorizationService.isAuthenticated) {
 			this.router.navigate(['./'], { relativeTo: this.route });
 		} else {
 			this.router.navigate(['login'], { relativeTo: this.route });
@@ -26,7 +28,7 @@ export class AppComponent implements OnInit {
     }
 
 	public isAuth(): boolean {
-		return this.isUserAuthentificated;
+		return this.authorizationService.isAuthenticated;
 	}
 
 	public handleLogout(): void {

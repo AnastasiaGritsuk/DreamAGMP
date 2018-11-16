@@ -28,12 +28,13 @@ export class LoginPageComponent implements OnInit {
         if (this.username == '' || this.password == '') {
             return;
         }
-        this.authService.login(this.username, this.password);
-        this.userLogin.emit(true);
-        this.router.navigate(['./'], { relativeTo: this.route });
+        this.authService.login(this.username, this.password).subscribe((response)=> {
+            this.router.navigate(['./'], { relativeTo: this.route });
+        });
+        
     }
 
     public isAuth(): boolean {
-        return this.authService.isAuthenticated();
+        return this.authService.isAuthenticated;
     }
 }

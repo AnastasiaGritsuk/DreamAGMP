@@ -8,16 +8,15 @@ let userMap = {};
 module.exports = (server) => {
 
 	router.post('/auth', (req, res, next) => {
-
-		if (!req.header('Authorization')) {
-			res.status(401).send('Unathorized!');
-		}
-
+		// if (!req.header('Authorization')) {
+		// 	res.status(401).send('Unathorized!');
+		// }
 		let token = uuid.v1();
-		let creds = basicAuthParser(req.header.authorization);
-		let username = creds.username;
+		// let creds = basicAuthParser(req);
+		// console.log("creds " + creds);
+		// let username = creds.username;
 
-		userMap[token] = username;
+		// userMap[token] = username;
 		res.json(token);
 	});
 
