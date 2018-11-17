@@ -27,9 +27,13 @@ export class LoginPageComponent implements OnInit {
         if (this.username == '' || this.password == '') {
             return;
         }
-        this.authService.login(this.username, this.password).subscribe((response)=> {
-            this.router.navigate(['/'], { relativeTo: this.route });
-        });
-        
+        this.authService.login(this.username, this.password)
+        .subscribe(
+            (response)=> {
+                this.router.navigate(['/'], { relativeTo: this.route });
+            },
+            (error)=> {
+                console.log(error);
+            });
     }
 }
