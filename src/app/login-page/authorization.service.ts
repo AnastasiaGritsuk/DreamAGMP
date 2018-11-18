@@ -4,6 +4,7 @@ import { User } from '../model/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 const BASE_URL = 'http://localhost:3004/auth';
 
@@ -31,15 +32,13 @@ export class AuthorizationService {
     }
 
     public logout() {
-       // localStorage.removeItem(this.token);
         this.token = null;
         this.user = null;
     }
 
-    public get isAuthenticated(): boolean {
-        return this.token ? true: false;
+    public get isAuthenticated(): Observable<string> {
+        return of(this.token);
     } 
-
 
     public getUserInfo(): User {
         return this.user;

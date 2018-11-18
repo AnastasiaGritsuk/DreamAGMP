@@ -27,10 +27,6 @@ export class AppComponent implements OnInit {
 		}
     }
 
-	public isAuth(): boolean {
-		return this.authorizationService.isAuthenticated;
-	}
-
 	public handleLogout(): void {
 		this.isUserAuthentificated = false;
 	}
