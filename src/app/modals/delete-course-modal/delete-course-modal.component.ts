@@ -26,9 +26,10 @@ export class DeleteCourseModalComponent implements OnInit {
     }
 
     public delete(): void {
-        this.courseService.removeItem(this.item.id).subscribe((courses)=> {
-            this.wasDeleted.emit(true);
-        });
+        this.courseService.removeCourse(this.item.id)
+        // .subscribe((courses)=> {
+        //     this.wasDeleted.emit(true);
+        // });
         
         this.isOpened = false; 
     }
