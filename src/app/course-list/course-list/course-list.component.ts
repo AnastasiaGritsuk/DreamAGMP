@@ -4,6 +4,7 @@ import { CourseService } from '../course.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToolbarComponent } from '../../toolbar/toolbar/toolbar.component';
 import { debounceTime } from 'rxjs/operators';
+import { LoadingBlockService } from 'src/app/loading-block/loading-block.service';
 
 @Component({
     selector: 'app-course-list',
@@ -19,12 +20,15 @@ export class CourseListComponent implements OnInit, AfterViewInit {
 
     constructor(
         private courseService: CourseService,
+        private readonly loadingBlockService: LoadingBlockService,
         private router: Router,
         private route: ActivatedRoute) {}
 
     public ngOnInit() {
+        this.loadingBlockService.setIsLoadingObservable(true);
         this.courseService.getList(this.maxCoursesCount.toString()).subscribe((courses) => {
             this.courses = courses;
+            this.loadingBlockService.setIsLoadingObservable(false);
         });
     }
 
@@ -55,8 +59,10 @@ export class CourseListComponent implements OnInit, AfterViewInit {
     }
 
     private search(queryString: string): void {
+        this.loadingBlockService.setIsLoadingObservable(true);
         this.courseService.getFilteredList(queryString, this.maxCoursesCount.toString()).subscribe((filteredCourses) => {
             this.courses = filteredCourses;
+            this.loadingBlockService.setIsLoadingObservable(false);
         });
     }
 }

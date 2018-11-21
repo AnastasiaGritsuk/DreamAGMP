@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FilterPipe } from './shared/pipes/filter.pipe';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthorizationService } from './login-page/authorization.service';
+import { LoadingBlockService } from './loading-block/loading-block.service';
 
 @Component({
 	selector: 'app-root',
@@ -16,10 +17,14 @@ export class AppComponent implements OnInit {
     constructor(
 		private router: Router,
 		private route: ActivatedRoute,
-		private readonly authorizationService: AuthorizationService) {}
+		private readonly authorizationService: AuthorizationService,
+		private readonly loadingBlockService: LoadingBlockService) {}
 
 
     public ngOnInit() {
+		this.loadingBlockService.getIsLoadingObservable().subscribe((isLoading) => {
+			this.isLoading = isLoading;
+		});
         if (this.authorizationService.isAuthenticated) {
 			this.router.navigate(['./'], { relativeTo: this.route });
 		} else {
