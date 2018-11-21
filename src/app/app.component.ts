@@ -11,7 +11,7 @@ import { AuthorizationService } from './login-page/authorization.service';
 })
 export class AppComponent implements OnInit {
 
-	public isUserAuthentificated: boolean = false;
+	public isLoading: boolean = true;
 
     constructor(
 		private router: Router,
@@ -26,12 +26,4 @@ export class AppComponent implements OnInit {
 			this.router.navigate(['login'], { relativeTo: this.route });
 		}
     }
-
-	public handleLogout(): void {
-		this.isUserAuthentificated = false;
-	}
-
-	public handleLogin(): void {
-		this.isUserAuthentificated = true;
-	}
 }

@@ -6,6 +6,7 @@ import { LoadingBlockComponent } from './loading-block/loading-block.component';
   imports: [
     CommonModule
   ],
-  declarations: [LoadingBlockComponent]
+  declarations: [LoadingBlockComponent],
+  exports: [LoadingBlockComponent]
 })
 export class LoadingBlockModule { }

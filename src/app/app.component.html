@@ -4,7 +4,5 @@
         <router-outlet></router-outlet>
     </div>
     <app-footer></app-footer>
-    <div *ngIf="isLoading" class="loader">
-        <div class="loader-maxi"></div>
-    </div>
+    <app-loading-block *ngIf="isLoading"></app-loading-block>
 </div>

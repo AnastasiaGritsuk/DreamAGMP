@@ -15,6 +15,7 @@ import { CanActivateGuard } from './guards/canActivateGuard';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './login-page/auth-interceptor';
+import { LoadingBlockModule } from './loading-block/loading-block.module';
 
 const APP_PROVIDERS = [
     CanActivateGuard
@@ -30,6 +31,7 @@ const APP_PROVIDERS = [
         ToolbarModule,
         CoursePageModule,
         HttpClientModule,
+        LoadingBlockModule,
         RouterModule.forRoot(ROUTES, { useHash: true })
     ],
     declarations: [
