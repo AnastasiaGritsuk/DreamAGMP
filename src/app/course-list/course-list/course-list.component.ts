@@ -25,11 +25,11 @@ export class CourseListComponent implements OnInit, AfterViewInit {
         private route: ActivatedRoute) {}
 
     public ngOnInit() {
-        this.loadingBlockService.setIsLoadingObservable(true);
-        this.courseService.getList(this.maxCoursesCount.toString()).subscribe((courses) => {
+        // think about how to manage subscriptions
+        this.courseService.getCoursesObservable().subscribe((courses)=> {
             this.courses = courses;
-            this.loadingBlockService.setIsLoadingObservable(false);
-        });
+        })
+        this.courseService.getList(this.maxCoursesCount.toString());
     }
 
     public ngAfterViewInit() {
@@ -49,9 +49,9 @@ export class CourseListComponent implements OnInit, AfterViewInit {
     }
 
     public handleWasDeletedParent() {
-        this.courseService.getList().subscribe((courses) => {
-            this.courses = courses;
-        });
+        // this.courseService.getList().subscribe((courses) => {
+        //     this.courses = courses;
+        // });
     }
 
     public get isLoadMore(): boolean {
@@ -59,10 +59,6 @@ export class CourseListComponent implements OnInit, AfterViewInit {
     }
 
     private search(queryString: string): void {
-        this.loadingBlockService.setIsLoadingObservable(true);
-        this.courseService.getFilteredList(queryString, this.maxCoursesCount.toString()).subscribe((filteredCourses) => {
-            this.courses = filteredCourses;
-            this.loadingBlockService.setIsLoadingObservable(false);
-        });
+        this.courseService.getFilteredList(queryString, this.maxCoursesCount.toString());
     }
 }
