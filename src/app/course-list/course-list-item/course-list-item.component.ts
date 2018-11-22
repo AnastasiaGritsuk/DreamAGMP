@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetect
 import { CourseListItem } from '../course-list-item';
 import { DeleteCourseModalComponent } from '../../modals/delete-course-modal/delete-course-modal.component'
 import { Router, ActivatedRoute } from '@angular/router';
+import { CourseService } from '../course.service';
 
 @Component({
     selector: 'app-course-list-item',
@@ -11,21 +12,21 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class CourseListItemComponent implements OnInit {
     @Input() public courseListItem: CourseListItem;
-    @Output() public delete: EventEmitter<string> = new EventEmitter();
-    @Output() public wasDeletedParent: EventEmitter<boolean> = new EventEmitter();
-
-    @ViewChild("deleteCourseModal") deleteCourseModal: DeleteCourseModalComponent;
+    @Output() public action: EventEmitter<boolean> = new EventEmitter(false);
 
     public topRated: boolean = true;
-    constructor(private router: Router,
-        private route: ActivatedRoute) { }
+    public showDeleteCourseDialog: boolean = false;
+
+    constructor(
+        private router: Router,
+        private route: ActivatedRoute,
+        private readonly courseService: CourseService) { }
 
     ngOnInit() {
     }
 
     public deleteItem(): void {
-        this.deleteCourseModal.open();
-        this.delete.emit(this.courseListItem.id);
+        this.showDeleteCourseDialog = true;
     }
 
     public get borderColor(): string {
@@ -44,7 +45,11 @@ export class CourseListItemComponent implements OnInit {
         this.router.navigate(['./', this.courseListItem.id], { relativeTo: this.route });
     }
 
-    public handleWasDeleted() {
-        this.wasDeletedParent.emit(true);
+    public onDeleteAction(isDeleted: boolean) {
+        if (isDeleted) {
+            this.courseService.removeCourse(this.courseListItem.id);
+        }
+
+        this.showDeleteCourseDialog = false;
     }
 }
