@@ -4,7 +4,7 @@ import { CourseListItem } from '../../course-list/course-list-item';
 @Component({
   selector: 'app-delete-course-modal',
   templateUrl: './delete-course-modal.component.html',
-  styleUrls: ['./delete-course-modal.component.css']
+  styleUrls: ['./delete-course-modal.component.scss']
 })
 export class DeleteCourseModalComponent implements OnInit {
     @Input() item: CourseListItem;

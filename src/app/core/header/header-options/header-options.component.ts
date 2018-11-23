@@ -6,7 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'app-header-options',
     templateUrl: './header-options.component.html',
-    styleUrls: ['./header-options.component.css']
+    styleUrls: ['./header-options.component.scss']
 })
 export class HeaderOptionsComponent implements OnInit {
     public user: User;

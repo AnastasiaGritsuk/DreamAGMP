@@ -7,7 +7,7 @@ import { CourseService } from '../course.service';
 @Component({
     selector: 'app-course-list-item',
     templateUrl: './course-list-item.component.html',
-    styleUrls: ['./course-list-item.component.css'],
+    styleUrls: ['./course-list-item.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseListItemComponent implements OnInit {

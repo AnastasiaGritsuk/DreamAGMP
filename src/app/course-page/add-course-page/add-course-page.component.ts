@@ -7,7 +7,7 @@ import { Utils } from '../../shared/utils';
 @Component({
     selector: 'app-add-course-page',
     templateUrl: './add-course-page.component.html',
-    styleUrls: ['./add-course-page.component.css']
+    styleUrls: ['./add-course-page.component.scss']
 })
 export class AddCoursePageComponent implements OnInit {
     public currentItem: CourseListItem = {id:"", title: "", description:"", creationDate: "", duration: null};

@@ -4,7 +4,7 @@ import { CourseService } from '../../course-list/course.service';
 @Component({
     selector: 'app-load-more',
     templateUrl: './load-more.component.html',
-    styleUrls: ['./load-more.component.css']
+    styleUrls: ['./load-more.component.scss']
 })
 export class LoadMoreComponent implements OnInit {
     private portion: number = 0;

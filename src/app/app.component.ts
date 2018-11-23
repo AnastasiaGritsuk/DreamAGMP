@@ -7,7 +7,7 @@ import { LoadingBlockService } from './loading-block/loading-block.service';
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
+    styleUrls: ['./app.component.scss'],
     providers: [FilterPipe]
 })
 export class AppComponent implements OnInit {

@@ -4,7 +4,7 @@ import { AuthorizationService } from '../../login-page/authorization.service';
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
-    styleUrls: ['./header.component.css']
+    styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
     constructor(private authorizationService: AuthorizationService) { }
