@@ -6,22 +6,21 @@ let failedRequestsCount = 0;
 module.exports = (server) => {
 
 	router.get('/courses', (req, res, next) => {
-		let coursesDB = server.db.getState().courses;
+		let textFragment = req.query['textFragment'];
 
-		if (req.query['textFragment'] === 'error' && failedRequestsCount <= 3) {
+		if (textFragment === 'error' && failedRequestsCount <= 3) {
 			failedRequestsCount++;
 			res.status('500').send('Something went wrong');
 		}
 
-		let courses = req.query['textFragment'] || req.query['textFragment'] == "" ? coursesDB.filter((course) => {
-			return course.title.toUpperCase().indexOf(req.query['textFragment'].toUpperCase()) >= 0;
+		let coursesDB = server.db.getState().courses;
+		let countToLoad = parseInt(req.query['countToLoad']);
+
+		let courses = textFragment || textFragment == "" ? coursesDB.filter((course) => {
+			return course.title.toUpperCase().indexOf(textFragment.toUpperCase()) >= 0;
 		}) : coursesDB;
 
-		let count = parseInt(req.query['countToLoad']);
-
-		courses = req.query['countToLoad'] ? 
-			courses.slice(0, count)
-			: coursesDB;
+		courses = countToLoad ? courses.slice(0, countToLoad): coursesDB;
 
 		res.json(courses);
 	});

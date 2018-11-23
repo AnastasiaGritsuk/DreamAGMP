@@ -9,6 +9,7 @@ import { CourseService } from '../../course-list/course.service';
 export class LoadMoreComponent implements OnInit {
     private portion: number = 0;
     private maxCount: number = 5;
+    public isDisabled: boolean = false;
 
     constructor(private courseService: CourseService) { }
 
