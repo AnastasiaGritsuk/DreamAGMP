@@ -38,7 +38,9 @@ module.exports = (server) => {
 		let coursesDB = server.db.getState().courses;
 		coursesDB.push(req.body);
 				
-		res.json(server.db.getState().courses);
+		res.json({
+			message: 'Course has been saved'
+		});
 	});
 
 	router.put('/courses', (req, res, next) => {
@@ -51,7 +53,9 @@ module.exports = (server) => {
 
         coursesDB[index] = req.body; 
 
-		res.json(server.db.getState().courses);
+		res.json({
+			message: 'Course has been updated'
+		});
 	});
 
 	router.delete('/courses/:id', (req, res, next) => {
@@ -61,7 +65,9 @@ module.exports = (server) => {
 		});
 				
 		server.db.getState().courses.splice(index, 1);
-		res.json(server.db.getState().courses);
+		res.json({
+			message: 'Course has been deleted'
+		});
 	});
 
 	return router;

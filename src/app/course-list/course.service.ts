@@ -9,6 +9,7 @@ import { LoadingBlockService } from '../loading-block/loading-block.service';
     providedIn: 'root'
 })
 export class CourseService {
+    private courses: CourseListItem[] = [];
     private coursesSubject: BehaviorSubject<CourseListItem[]> = new BehaviorSubject([]);
 
     constructor(
@@ -24,7 +25,8 @@ export class CourseService {
         this.loadingBlockService.setIsLoadingObservable(true);
         this.courseHttpService.getList(countToLoad)
             .subscribe(courses => {
-                this.coursesSubject.next(courses);
+                this.courses = courses;
+                this.coursesSubject.next(this.courses);
                 this.loadingBlockService.setIsLoadingObservable(false);
             });
     }
@@ -33,24 +35,42 @@ export class CourseService {
         this.loadingBlockService.setIsLoadingObservable(true);
         this.courseHttpService.getFilteredList(textFragment, countToLoad)
             .subscribe(courses => {
-                this.coursesSubject.next(courses);
+                this.courses = courses;
+                this.coursesSubject.next(this.courses);
                 this.loadingBlockService.setIsLoadingObservable(false);
             });
     }
     
     public createCourse(course: CourseListItem): void {
         this.courseHttpService.createCourse(course)
-            .subscribe(response => console.log(response));
+            .subscribe(response => {
+                this.courses.push(course);
+                this.coursesSubject.next(this.courses);
+            });
     }
 
     public updateCourse(course: CourseListItem): void {
         this.courseHttpService.updateCourse(course)
-            .subscribe(response => console.log(response));
+            .subscribe(response => {
+                let index = this.courses.findIndex((item)=> {
+                    return item.id === course.id;
+                });
+                        
+                this.courses[index] = course;
+                this.coursesSubject.next(this.courses);
+            });
     }
 
     public removeCourse(id: string): void {
         this.courseHttpService.removeCourse(id)
-            .subscribe(response => console.log(response));
+            .subscribe(response => {
+                let index = this.courses.findIndex((item)=> {
+                    return item.id === id;
+                });
+                        
+                this.courses.splice(index, 1);
+                this.coursesSubject.next(this.courses);
+            });
     }
 
     public getCourseById(id: string): Observable<CourseListItem> {
