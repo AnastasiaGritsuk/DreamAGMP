@@ -1,7 +1,6 @@
 <div *ngIf="route.children.length === 0">
     <app-breadcrumbs></app-breadcrumbs>
-    <app-toolbar #toolbar
-        (onAddCourse)="onAddCourseClick()"></app-toolbar>
+    <app-toolbar #toolbar></app-toolbar>
         <div class="course-container">
             <app-course-list-item *ngFor="let item of courses | orderBy"
                 [courseListItem]="item"

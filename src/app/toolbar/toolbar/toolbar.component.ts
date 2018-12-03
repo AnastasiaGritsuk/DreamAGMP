@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-toolbar',
@@ -7,12 +8,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
     styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent implements OnInit {
-
-    @Output() onAddCourse: EventEmitter<boolean> = new EventEmitter();
-
     private searchValue$: BehaviorSubject<string> = new BehaviorSubject("");
 
-    constructor() { }
+    constructor(private router: Router,
+        private route: ActivatedRoute) { }
 
     ngOnInit() {}
     
@@ -23,8 +22,7 @@ export class ToolbarComponent implements OnInit {
     }
 
     public addCourse(): void {
-        console.log("addCourse");
-        this.onAddCourse.emit(true);
+        this.router.navigate(['./new'], { relativeTo: this.route });
     }
 
     public get serchValue(): Observable<string> {
