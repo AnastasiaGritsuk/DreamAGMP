@@ -1,39 +1,43 @@
 import { Injectable } from '@angular/core';
 import { Utils } from '../shared/utils';
 import { User } from '../model/user';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { of } from 'rxjs';
+
+const BASE_URL = 'http://localhost:3004/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthorizationService {
 
-    public token: string = '';
-    public user: User;
+    private token = null;
+    private user: User;
 
-    constructor() { }
+    constructor(
+        private http: HttpClient
+    ) { }
 
-    public login(username: string, password: string): void {
-        this.token = Utils.uniqueId();
-        this.user = {
-            id: this.token,
-            firstName: username,
-            password:password
-        }
-
-        localStorage.setItem(this.token, JSON.stringify(this.user));
+    public login(username: string, password: string): Observable<string> {
+        return this.http.post<string>(`${BASE_URL}`, { username, password})
+            .pipe(map(token => {
+                if (token) {
+                    //this.user.firstName = username;
+                    this.token = token;
+                }
+                return token;
+            }));
     }
 
     public logout() {
-        localStorage.removeItem(this.token);
         this.token = null;
         this.user = null;
     }
 
-    public isAuthenticated(): boolean {
-        if (localStorage.getItem(this.token)) {
-            return true;
-        }
-        return false;
+    public get isAuthenticated(): Observable<string> {
+        return of(this.token);
     } 
 
     public getUserInfo(): User {

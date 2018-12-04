@@ -1,9 +1,8 @@
-<app-header (userLogout)="handleLogout($event)"></app-header>
-<div class="container">
-    <app-login-page *ngIf="!isAuth()" (userLogin)="handleLogin($event)"></app-login-page>
-    <div *ngIf="isAuth()">
-        <app-breadcrumbs></app-breadcrumbs>
+<div>
+    <app-header></app-header>
+    <div class="container">
         <router-outlet></router-outlet>
     </div>
+    <app-footer></app-footer>
+    <app-loading-block *ngIf="isLoading"></app-loading-block>
 </div>
-<app-footer></app-footer>

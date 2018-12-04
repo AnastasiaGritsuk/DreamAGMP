@@ -18,6 +18,4 @@
         </div>
     </div>
 </div>
-<app-delete-course-modal #deleteCourseModal (wasDeleted)="handleWasDeleted()"
-    [item]="courseListItem"
-></app-delete-course-modal>
+<app-delete-course-modal (action)="onDeleteAction($event)" [item]="courseListItem" [isOpen]="showDeleteCourseDialog"></app-delete-course-modal>

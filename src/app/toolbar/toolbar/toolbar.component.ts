@@ -1,28 +1,31 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-toolbar',
     templateUrl: './toolbar.component.html',
-    styleUrls: ['./toolbar.component.css']
+    styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent implements OnInit {
+    private searchValue$: BehaviorSubject<string> = new BehaviorSubject("");
 
-    @Output() onSearch: EventEmitter<string> = new EventEmitter();
-    @Output() onAddCourse: EventEmitter<boolean> = new EventEmitter();
+    constructor(private router: Router,
+        private route: ActivatedRoute) { }
 
-    public searchValue: string = "";
-
-    constructor() { }
-
-    ngOnInit() {
-    }
+    ngOnInit() {}
     
-    public search(): void {
-        this.onSearch.emit(this.searchValue);
+    public search(substr: string): void {
+        if (substr.length > 2 || substr == "") {
+            this.searchValue$.next(substr);
+        }
     }
 
     public addCourse(): void {
-        console.log("addCourse");
-        this.onAddCourse.emit(true);
+        this.router.navigate(['./new'], { relativeTo: this.route });
+    }
+
+    public get serchValue(): Observable<string> {
+        return this.searchValue$.asObservable();
     }
 }

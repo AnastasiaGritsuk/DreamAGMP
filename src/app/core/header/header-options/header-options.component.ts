@@ -6,13 +6,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'app-header-options',
     templateUrl: './header-options.component.html',
-    styleUrls: ['./header-options.component.css']
+    styleUrls: ['./header-options.component.scss']
 })
 export class HeaderOptionsComponent implements OnInit {
     public user: User;
     
-    @Output() userLogout = new EventEmitter<boolean>();
-
     constructor(private authorizationService: AuthorizationService,
         private router: Router,
         private route: ActivatedRoute) { }
@@ -22,7 +20,6 @@ export class HeaderOptionsComponent implements OnInit {
     }
 
     public logout(): void {
-        this.userLogout.emit(true);
         this.authorizationService.logout();
         this.router.navigate(['login'], { relativeTo: this.route });
     }

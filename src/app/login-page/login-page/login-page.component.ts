@@ -6,13 +6,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+  styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit {
 
     public username: string = '';
     public password: string = '';
-    @Output() userLogin = new EventEmitter<boolean>();
 
     constructor(
         private authService: AuthorizationService, 
@@ -28,12 +27,13 @@ export class LoginPageComponent implements OnInit {
         if (this.username == '' || this.password == '') {
             return;
         }
-        this.authService.login(this.username, this.password);
-        this.userLogin.emit(true);
-        this.router.navigate(['./'], { relativeTo: this.route });
-    }
-
-    public isAuth(): boolean {
-        return this.authService.isAuthenticated();
+        this.authService.login(this.username, this.password)
+        .subscribe(
+            (response)=> {
+                this.router.navigate(['/'], { relativeTo: this.route });
+            },
+            (error)=> {
+                console.log(error);
+            });
     }
 }
