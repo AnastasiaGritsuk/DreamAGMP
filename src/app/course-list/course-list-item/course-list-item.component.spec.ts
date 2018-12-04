@@ -16,7 +16,7 @@ describe('CourseListItemComponent', () => {
     fixture = TestBed.createComponent(CourseListItemComponent);
     component = fixture.componentInstance;
     component.courseListItem = {
-        id: 1,
+        id: "1",
         title: "my first course",
         creationDate: "03.31.1990",
         duration: 60,
