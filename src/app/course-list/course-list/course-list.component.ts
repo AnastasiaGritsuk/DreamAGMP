@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { CourseListItem } from '../course-list-item';
+import { CourseItem } from '../course-list-item';
 import { CourseService } from '../course.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToolbarComponent } from '../../toolbar/toolbar/toolbar.component';
@@ -13,7 +13,7 @@ import { LoadingBlockService } from 'src/app/loading-block/loading-block.service
     
 })
 export class CourseListComponent implements OnInit, AfterViewInit {
-    public courses: CourseListItem[] = [];
+    public courses: CourseItem[] = [];
     private maxCoursesCount: number = 5;
 
     @ViewChild("toolbar") toolbarComponent : ToolbarComponent;

@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { CourseListItem } from '../../course-list/course-list-item';
+import { CourseItem } from '../../course-list/course-list-item';
 
 @Pipe({name: 'orderBy'})
 export class OrderByPipe implements PipeTransform {
-    transform(items: CourseListItem[]): CourseListItem[] {
+    transform(items: CourseItem[]): CourseItem[] {
         items.sort((a, b) => {
             let aDate = new Date(a.creationDate);
             let bDate = new Date(b.creationDate);

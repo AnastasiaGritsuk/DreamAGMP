@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
 import { CourseListComponent } from './course-list.component';
-import { CourseListItemComponent } from '../course-list-item/course-list-item.component';
+import { CourseItemComponent } from '../course-list-item/course-list-item.component';
 import { CourseService } from '../course.service';
 import { By } from '@angular/platform-browser';
 
@@ -32,7 +32,7 @@ describe('CourseListComponent', () => {
             )
         }
         TestBed.configureTestingModule({
-            declarations: [CourseListComponent, CourseListItemComponent],
+            declarations: [CourseListComponent, CourseItemComponent],
             providers:[
                 {
                     provide: CourseService, 
@@ -60,7 +60,7 @@ describe('CourseListComponent', () => {
         expect(courseServiceMock.getCourseItems).toHaveBeenCalled();
     });
 
-    it('should check courseListItems exist on the page', () => {
+    it('should check CourseItems exist on the page', () => {
         component.ngOnInit();
         const debugElement: DebugElement = fixture.debugElement;
         const itemTitleDebugElement: DebugElement = debugElement.query(By.css(".card"));

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetectionStrategy } from '@angular/core';
-import { CourseListItem } from '../course-list-item';
+import { CourseItem } from '../course-list-item';
 import { DeleteCourseModalComponent } from '../../modals/delete-course-modal/delete-course-modal.component'
 import { Router, ActivatedRoute } from '@angular/router';
 import { CourseService } from '../course.service';
@@ -10,8 +10,8 @@ import { CourseService } from '../course.service';
     styleUrls: ['./course-list-item.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CourseListItemComponent implements OnInit {
-    @Input() public courseListItem: CourseListItem;
+export class CourseItemComponent implements OnInit {
+    @Input() public courseItem: CourseItem;
     @Output() public action: EventEmitter<boolean> = new EventEmitter(false);
 
     public topRated: boolean = true;
@@ -30,7 +30,7 @@ export class CourseListItemComponent implements OnInit {
     }
 
     public get borderColor(): string {
-        let creationDate = new Date(this.courseListItem.creationDate);
+        let creationDate = new Date(this.courseItem.creationDate);
         let currentDate = new Date(new Date().toLocaleDateString());
         let inTwoWeeksDate = new Date(new Date(new Date().toLocaleDateString()).setDate(currentDate.getDate() - 14));
 
@@ -42,12 +42,12 @@ export class CourseListItemComponent implements OnInit {
     }
 
     public editItem(): void {
-        this.router.navigate(['./', this.courseListItem.id], { relativeTo: this.route });
+        this.router.navigate(['./', this.courseItem.id], { relativeTo: this.route });
     }
 
     public onDeleteAction(isDeleted: boolean) {
         if (isDeleted) {
-            this.courseService.removeCourse(this.courseListItem.id);
+            this.courseService.removeCourse(this.courseItem.id);
         }
 
         this.showDeleteCourseDialog = false;

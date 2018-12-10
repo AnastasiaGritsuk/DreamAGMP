@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CourseListComponent } from './course-list/course-list.component';
-import { CourseListItemComponent } from './course-list-item/course-list-item.component';
+import { CourseItemComponent } from './course-list-item/course-list-item.component';
 import { ColorBorderDirective } from '../shared/colorBorder.directive';
 import { FormsModule } from '@angular/forms';
 import { ModalsModule } from '../modals/modals.module';
@@ -24,7 +24,7 @@ import { BreadcrumbsModule } from '../breadcrumbs/breadcrumbs.module';
   ],
   declarations: [
       CourseListComponent, 
-      CourseListItemComponent, 
+      CourseItemComponent, 
       ColorBorderDirective
     ],
   exports: [CourseListComponent]

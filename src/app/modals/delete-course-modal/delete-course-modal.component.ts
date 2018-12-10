@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { CourseListItem } from '../../course-list/course-list-item';
+import { CourseItem } from '../../course-list/course-list-item';
 
 @Component({
   selector: 'app-delete-course-modal',
@@ -7,7 +7,7 @@ import { CourseListItem } from '../../course-list/course-list-item';
   styleUrls: ['./delete-course-modal.component.scss']
 })
 export class DeleteCourseModalComponent implements OnInit {
-    @Input() item: CourseListItem;
+    @Input() item: CourseItem;
     @Input() public isOpen = false;
     @Output() public action: EventEmitter<boolean> = new EventEmitter(false);
 

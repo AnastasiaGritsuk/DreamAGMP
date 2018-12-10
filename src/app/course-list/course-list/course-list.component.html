@@ -3,7 +3,7 @@
     <app-toolbar #toolbar></app-toolbar>
         <div class="course-container">
             <app-course-list-item *ngFor="let item of courses | orderBy"
-                [courseListItem]="item"
+                [courseItem]="item"
                 (delete)="handleDelete($event)"
                 (wasDeletedParent)= "handleWasDeletedParent()">
             </app-course-list-item>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CourseService } from '../../course-list/course.service';
-import { CourseListItem } from '../../course-list/course-list-item';
+import { CourseItem } from '../../course-list/course-list-item';
 import { Utils } from '../../shared/utils';
 
 @Component({
@@ -10,7 +10,7 @@ import { Utils } from '../../shared/utils';
     styleUrls: ['./add-course-page.component.scss']
 })
 export class AddCoursePageComponent implements OnInit {
-    public currentItem: CourseListItem = {id:"", title: "", description:"", creationDate: "", duration: null};
+    public currentItem: CourseItem = {id:"", title: "", description:"", creationDate: "", duration: null};
     constructor(
         private router: Router,
         private route: ActivatedRoute,

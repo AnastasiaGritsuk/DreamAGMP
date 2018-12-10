@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CourseListItem } from './course-list-item';
+import { CourseItem } from './course-list-item';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { CourseHttpService } from './course-http.service';
@@ -9,15 +9,15 @@ import { LoadingBlockService } from '../loading-block/loading-block.service';
     providedIn: 'root'
 })
 export class CourseService {
-    private courses: CourseListItem[] = [];
-    private coursesSubject: BehaviorSubject<CourseListItem[]> = new BehaviorSubject([]);
+    private courses: CourseItem[] = [];
+    private coursesSubject: BehaviorSubject<CourseItem[]> = new BehaviorSubject([]);
 
     constructor(
         private http: HttpClient,
         private readonly courseHttpService: CourseHttpService,
         private readonly loadingBlockService: LoadingBlockService) { }
 
-    public getCoursesObservable(): Observable<CourseListItem[]> {
+    public getCoursesObservable(): Observable<CourseItem[]> {
         return this.coursesSubject.asObservable();
     }
 
@@ -41,7 +41,7 @@ export class CourseService {
             });
     }
     
-    public createCourse(course: CourseListItem): void {
+    public createCourse(course: CourseItem): void {
         this.courseHttpService.createCourse(course)
             .subscribe(response => {
                 this.courses.push(course);
@@ -49,7 +49,7 @@ export class CourseService {
             });
     }
 
-    public updateCourse(course: CourseListItem): void {
+    public updateCourse(course: CourseItem): void {
         this.courseHttpService.updateCourse(course)
             .subscribe(response => {
                 let index = this.courses.findIndex((item)=> {
@@ -73,7 +73,7 @@ export class CourseService {
             });
     }
 
-    public getCourseById(id: string): Observable<CourseListItem> {
+    public getCourseById(id: string): Observable<CourseItem> {
         return this.courseHttpService.getCouresById(id);
             
     }
