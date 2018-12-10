@@ -7,9 +7,9 @@ import { CourseService } from '../../course-list/course.service';
     styleUrls: ['./load-more.component.scss']
 })
 export class LoadMoreComponent implements OnInit {
-    private portion: number = 0;
-    private maxCount: number = 5;
-    public isDisabled: boolean = false;
+    private portion = 0;
+    private maxCount = 5;
+    public isDisabled = false;
 
     constructor(private courseService: CourseService) { }
 
@@ -18,8 +18,8 @@ export class LoadMoreComponent implements OnInit {
 
     public loadMore() {
         this.portion = this.portion + 1;
-        let startIndex = this.portion * this.maxCount;
-        let count = startIndex + this.maxCount;
+        const startIndex = this.portion * this.maxCount;
+        const count = startIndex + this.maxCount;
         this.courseService.getList(count.toString());
     }
 }

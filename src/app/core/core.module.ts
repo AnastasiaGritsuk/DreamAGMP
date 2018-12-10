@@ -9,7 +9,7 @@ import { HeaderOptionsComponent } from './header/header-options/header-options.c
     CommonModule
   ],
   declarations: [
-      HeaderComponent, 
+      HeaderComponent,
       FooterComponent,
       HeaderOptionsComponent
     ],

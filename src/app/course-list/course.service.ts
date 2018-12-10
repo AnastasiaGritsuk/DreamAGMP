@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CourseItem } from './course-list-item';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { CourseHttpService } from './course-http.service';
+import { ClientHttpService } from './client-http.service';
 import { LoadingBlockService } from '../loading-block/loading-block.service';
 
 @Injectable({
@@ -13,8 +13,7 @@ export class CourseService {
     private coursesSubject: BehaviorSubject<CourseItem[]> = new BehaviorSubject([]);
 
     constructor(
-        private http: HttpClient,
-        private readonly courseHttpService: CourseHttpService,
+        private readonly clientHttpService: ClientHttpService,
         private readonly loadingBlockService: LoadingBlockService) { }
 
     public getCoursesObservable(): Observable<CourseItem[]> {
@@ -23,7 +22,7 @@ export class CourseService {
 
     public getList(countToLoad?: string): void {
         this.loadingBlockService.setIsLoadingObservable(true);
-        this.courseHttpService.getList(countToLoad)
+        this.clientHttpService.getList(countToLoad)
             .subscribe(courses => {
                 this.courses = courses;
                 this.coursesSubject.next(this.courses);
@@ -33,16 +32,16 @@ export class CourseService {
 
     public getFilteredList(textFragment: string, countToLoad: string): void {
         this.loadingBlockService.setIsLoadingObservable(true);
-        this.courseHttpService.getFilteredList(textFragment, countToLoad)
+        this.clientHttpService.getFilteredList(textFragment, countToLoad)
             .subscribe(courses => {
                 this.courses = courses;
                 this.coursesSubject.next(this.courses);
                 this.loadingBlockService.setIsLoadingObservable(false);
             });
     }
-    
+
     public createCourse(course: CourseItem): void {
-        this.courseHttpService.createCourse(course)
+        this.clientHttpService.createCourse(course)
             .subscribe(response => {
                 this.courses.push(course);
                 this.coursesSubject.next(this.courses);
@@ -50,31 +49,29 @@ export class CourseService {
     }
 
     public updateCourse(course: CourseItem): void {
-        this.courseHttpService.updateCourse(course)
+        this.clientHttpService.updateCourse(course)
             .subscribe(response => {
-                let index = this.courses.findIndex((item)=> {
+                const index = this.courses.findIndex((item) => {
                     return item.id === course.id;
                 });
-                        
                 this.courses[index] = course;
                 this.coursesSubject.next(this.courses);
             });
     }
 
     public removeCourse(id: string): void {
-        this.courseHttpService.removeCourse(id)
+        this.clientHttpService.removeCourse(id)
             .subscribe(response => {
-                let index = this.courses.findIndex((item)=> {
+                const index = this.courses.findIndex((item) => {
                     return item.id === id;
                 });
-                        
+
                 this.courses.splice(index, 1);
                 this.coursesSubject.next(this.courses);
             });
     }
 
     public getCourseById(id: string): Observable<CourseItem> {
-        return this.courseHttpService.getCouresById(id);
-            
+        return this.clientHttpService.getCouresById(id);
     }
 }

@@ -24,7 +24,7 @@ export class AuthorizationService {
         return this.http.post<string>(`${BASE_URL}`, { username, password})
             .pipe(map(token => {
                 if (token) {
-                    //this.user.firstName = username;
+                    // this.user.firstName = username;
                     this.token = token;
                 }
                 return token;
@@ -38,7 +38,7 @@ export class AuthorizationService {
 
     public get isAuthenticated(): Observable<string> {
         return of(this.token);
-    } 
+    }
 
     public getUserInfo(): User {
         return this.user;

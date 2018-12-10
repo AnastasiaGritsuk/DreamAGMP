@@ -1,11 +1,11 @@
-import { Directive, ElementRef, Renderer2, Input, OnChanges, OnInit } from "@angular/core";
+import { Directive, ElementRef, Renderer2, Input, OnChanges, OnInit } from '@angular/core';
 
 @Directive({
     selector: '[appColorBorder]'
 })
 
 export class ColorBorderDirective implements OnChanges, OnInit {
-    @Input('appColorBorder') highLight: string; 
+    @Input() appColorBorder: string;
     constructor (private el: ElementRef, private renderer: Renderer2) {}
 
     private color(color: string): void {
@@ -13,10 +13,10 @@ export class ColorBorderDirective implements OnChanges, OnInit {
     }
 
     public ngOnInit() {
-        this.color(this.highLight);
+        this.color(this.appColorBorder);
     }
 
     public ngOnChanges() {
-        this.color(this.highLight);
+        this.color(this.appColorBorder);
     }
 }

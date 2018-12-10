@@ -1,21 +1,20 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { CourseItem } from '../course-list-item';
-import { DeleteCourseModalComponent } from '../../modals/delete-course-modal/delete-course-modal.component'
 import { Router, ActivatedRoute } from '@angular/router';
 import { CourseService } from '../course.service';
 
 @Component({
-    selector: 'app-course-list-item',
-    templateUrl: './course-list-item.component.html',
-    styleUrls: ['./course-list-item.component.scss'],
+    selector: 'app-course-item',
+    templateUrl: './course-item.component.html',
+    styleUrls: ['./course-item.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseItemComponent implements OnInit {
     @Input() public courseItem: CourseItem;
     @Output() public action: EventEmitter<boolean> = new EventEmitter(false);
 
-    public topRated: boolean = true;
-    public showDeleteCourseDialog: boolean = false;
+    public topRated = true;
+    public showDeleteCourseDialog = false;
 
     constructor(
         private router: Router,
@@ -30,15 +29,15 @@ export class CourseItemComponent implements OnInit {
     }
 
     public get borderColor(): string {
-        let creationDate = new Date(this.courseItem.creationDate);
-        let currentDate = new Date(new Date().toLocaleDateString());
-        let inTwoWeeksDate = new Date(new Date(new Date().toLocaleDateString()).setDate(currentDate.getDate() - 14));
+        const creationDate = new Date(this.courseItem.creationDate);
+        const currentDate = new Date(new Date().toLocaleDateString());
+        const inTwoWeeksDate = new Date(new Date(new Date().toLocaleDateString()).setDate(currentDate.getDate() - 14));
 
         if ((creationDate < currentDate) && creationDate >= inTwoWeeksDate) {
             return 'green';
         } else if (creationDate > currentDate) {
             return 'blue';
-        };
+        }
     }
 
     public editItem(): void {

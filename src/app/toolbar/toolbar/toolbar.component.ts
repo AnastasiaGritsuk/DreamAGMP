@@ -8,15 +8,15 @@ import { Router, ActivatedRoute } from '@angular/router';
     styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent implements OnInit {
-    private searchValue$: BehaviorSubject<string> = new BehaviorSubject("");
+    private searchValue$: BehaviorSubject<string> = new BehaviorSubject('');
 
     constructor(private router: Router,
         private route: ActivatedRoute) { }
 
     ngOnInit() {}
-    
+
     public search(substr: string): void {
-        if (substr.length > 2 || substr == "") {
+        if (substr.length > 2 || substr === '') {
             this.searchValue$.next(substr);
         }
     }

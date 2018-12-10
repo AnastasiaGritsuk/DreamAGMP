@@ -10,11 +10,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LoginPageComponent implements OnInit {
 
-    public username: string = '';
-    public password: string = '';
+    public username = '';
+    public password = '';
 
     constructor(
-        private authService: AuthorizationService, 
+        private authService: AuthorizationService,
         private router: Router,
         private route: ActivatedRoute) { }
 
@@ -24,15 +24,15 @@ export class LoginPageComponent implements OnInit {
     public submit() {
         // temporary soluthion
 
-        if (this.username == '' || this.password == '') {
+        if (this.username === '' || this.password === '') {
             return;
         }
         this.authService.login(this.username, this.password)
         .subscribe(
-            (response)=> {
+            (response) => {
                 this.router.navigate(['/'], { relativeTo: this.route });
             },
-            (error)=> {
+            (error) => {
                 console.log(error);
             });
     }

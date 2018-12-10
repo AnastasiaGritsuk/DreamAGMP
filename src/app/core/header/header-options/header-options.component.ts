@@ -10,7 +10,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class HeaderOptionsComponent implements OnInit {
     public user: User;
-    
     constructor(private authorizationService: AuthorizationService,
         private router: Router,
         private route: ActivatedRoute) { }

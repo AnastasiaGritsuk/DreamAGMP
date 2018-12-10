@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { CourseItemComponent } from './course-list-item.component';
+import { CourseItemComponent } from './course-item.component';
 
 describe('CourseItemComponent', () => {
   let component: CourseItemComponent;
@@ -15,12 +15,12 @@ describe('CourseItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CourseItemComponent);
     component = fixture.componentInstance;
-    component.CourseItem = {
-        id: "1",
-        title: "my first course",
-        creationDate: "03.31.1990",
+    component.courseItem = {
+        id: '1',
+        title: 'my first course',
+        creationDate: '03.31.1990',
         duration: 60,
-        description: "desc 1"
+        description: 'desc 1'
     };
     fixture.detectChanges();
   });

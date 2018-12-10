@@ -2,11 +2,11 @@
     <app-breadcrumbs></app-breadcrumbs>
     <app-toolbar #toolbar></app-toolbar>
         <div class="course-container">
-            <app-course-list-item *ngFor="let item of courses | orderBy"
+            <app-course-item *ngFor="let item of courses | orderBy"
                 [courseItem]="item"
                 (delete)="handleDelete($event)"
                 (wasDeletedParent)= "handleWasDeletedParent()">
-            </app-course-list-item>
+            </app-course-item>
         </div>
     <div *ngIf="courses.length == 0" 
         class="alert alert-primary text-center" role="alert">

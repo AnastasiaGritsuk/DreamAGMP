@@ -7,8 +7,8 @@ import { CanActivateGuard } from './guards/canActivateGuard';
 
 export const ROUTES: Routes = [
     { path: '', redirectTo: 'courses', pathMatch: 'full' },
-    { 
-        path: 'courses', 
+    {
+        path: 'courses',
         component: CourseListComponent,
         canActivate: [CanActivateGuard],
         children: [
@@ -27,7 +27,7 @@ export const ROUTES: Routes = [
                 data: {
                     breadcrumb: ' /'
                 }
-            } 
+            }
         ]
     },
     { path: 'login', component: LoginPageComponent },

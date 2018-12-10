@@ -10,13 +10,12 @@ import { LoadingBlockService } from 'src/app/loading-block/loading-block.service
     selector: 'app-course-list',
     templateUrl: './course-list.component.html',
     styleUrls: ['./course-list.component.scss']
-    
 })
 export class CourseListComponent implements OnInit, AfterViewInit {
     public courses: CourseItem[] = [];
-    private maxCoursesCount: number = 5;
+    private maxCoursesCount = 5;
 
-    @ViewChild("toolbar") toolbarComponent : ToolbarComponent;
+    @ViewChild('toolbar') toolbarComponent: ToolbarComponent;
 
     constructor(
         private courseService: CourseService,
@@ -24,9 +23,9 @@ export class CourseListComponent implements OnInit, AfterViewInit {
 
     public ngOnInit() {
         // think about how to manage subscriptions
-        this.courseService.getCoursesObservable().subscribe((courses)=> {
+        this.courseService.getCoursesObservable().subscribe((courses) => {
             this.courses = courses;
-        })
+        });
         this.courseService.getList(this.maxCoursesCount.toString());
     }
 

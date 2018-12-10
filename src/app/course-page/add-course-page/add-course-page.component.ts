@@ -10,16 +10,16 @@ import { Utils } from '../../shared/utils';
     styleUrls: ['./add-course-page.component.scss']
 })
 export class AddCoursePageComponent implements OnInit {
-    public currentItem: CourseItem = {id:"", title: "", description:"", creationDate: "", duration: null};
+    public currentItem: CourseItem = {id: '', title: '', description: '', creationDate: '', duration: null};
     constructor(
         private router: Router,
         private route: ActivatedRoute,
         private courseService: CourseService) { }
 
-    private isEditMode: boolean = false;
+    private isEditMode = false;
 
     ngOnInit() {
-        this.route.params.subscribe((params)=> {
+        this.route.params.subscribe((params) => {
             if (!params.id) {
                 this.isEditMode = false;
                 return;
@@ -32,20 +32,14 @@ export class AddCoursePageComponent implements OnInit {
     }
 
     public save(): void {
-        if(this.isEditMode) {
-            this.courseService.updateCourse(this.currentItem)
-            // .subscribe((courses)=> {
-            //     console.dir(courses);
-            // });
+        if (this.isEditMode) {
+            this.courseService.updateCourse(this.currentItem);
         } else {
             this.currentItem.id = Utils.uniqueId();
-            this.courseService.createCourse(this.currentItem)
-            // .subscribe((courses)=> {
-            //     console.dir(courses);
-            // });
+            this.courseService.createCourse(this.currentItem);
         }
 
-        this.router.navigate(['/'], { relativeTo: this.route })
+        this.router.navigate(['/'], { relativeTo: this.route });
     }
 
     public cancel(): void {

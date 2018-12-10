@@ -11,7 +11,7 @@ import { LoadingBlockService } from './loading-block/loading-block.service';
     providers: [FilterPipe]
 })
 export class AppComponent implements OnInit {
-	public isLoading: boolean = false;
+	public isLoading = false;
 
     constructor(
 		private readonly cdRef: ChangeDetectorRef,
@@ -25,14 +25,12 @@ export class AppComponent implements OnInit {
 		this.loadingBlockService.getIsLoadingObservable()
 			.subscribe((isLoading) => {
 				this.isLoading = isLoading;
-				this.cdRef.detectChanges(); //temporary, figure out why it is needed
+				this.cdRef.detectChanges(); // temporary, figure out why it is needed
 			});
         if (this.authorizationService.isAuthenticated) {
 			this.router.navigate(['./'], { relativeTo: this.route });
 		} else {
 			this.router.navigate(['login'], { relativeTo: this.route });
 		}
-	}
-	
-	
+    }
 }

@@ -16,9 +16,9 @@ import { OrderByPipe } from './pipes/orderBy.pipe';
 
 export class SharedModule {
     static forRoot(): ModuleWithProviders {
-      return {
-        ngModule: SharedModule,
-        providers: [ ]
-      };
+        return {
+            ngModule: SharedModule,
+            providers: [ ]
+        };
     }
-  }
+}

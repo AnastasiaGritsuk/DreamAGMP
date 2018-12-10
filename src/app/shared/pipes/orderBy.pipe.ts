@@ -5,8 +5,8 @@ import { CourseItem } from '../../course-list/course-list-item';
 export class OrderByPipe implements PipeTransform {
     transform(items: CourseItem[]): CourseItem[] {
         items.sort((a, b) => {
-            let aDate = new Date(a.creationDate);
-            let bDate = new Date(b.creationDate);
+            const aDate = new Date(a.creationDate);
+            const bDate = new Date(b.creationDate);
             if (aDate > bDate) {
                 return 1;
             } else if (aDate < bDate) {
@@ -14,7 +14,6 @@ export class OrderByPipe implements PipeTransform {
             } else {
                 return 0;
             }
-            
         });
         return items;
     }

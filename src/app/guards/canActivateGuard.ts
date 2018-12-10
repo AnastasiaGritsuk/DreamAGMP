@@ -10,7 +10,7 @@ export class CanActivateGuard implements CanActivate {
 
     canActivate(): Observable<boolean> {
         return this.authService.isAuthenticated.pipe(
-            map((result)=> {
+            map((result) => {
                 if (result) {
                     return true;
                 } else {
@@ -19,4 +19,4 @@ export class CanActivateGuard implements CanActivate {
                 }
         }));
     }
-} 
+}
