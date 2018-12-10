@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { FilterPipe } from './shared/pipes/filter.pipe';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthorizationService } from './login-page/authorization.service';
-import { LoadingBlockService } from './loading-block/loading-block.service';
+import { LoadingBlockService } from '../components/loading-block/loading-block.service';
+import { AuthorizationService } from '../components/login-page/authorization.service';
+import { FilterPipe } from '../components/shared/pipes/filter.pipe';
 
 @Component({
 	selector: 'app-root',

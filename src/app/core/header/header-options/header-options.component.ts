@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { User } from '../../../model/user';
-import { AuthorizationService } from '../../../login-page/authorization.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/entities/user';
+import { AuthorizationService } from 'src/app/components/login-page/authorization.service';
 
 @Component({
     selector: 'app-header-options',

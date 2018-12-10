@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthorizationService } from '../../login-page/authorization.service';
+import { AuthorizationService } from 'src/app/components/login-page/authorization.service';
 
 @Component({
     selector: 'app-header',

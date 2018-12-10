@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Utils } from '../shared/utils';
-import { User } from '../model/user';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { User } from 'src/app/entities/user';
 
 const BASE_URL = 'http://localhost:3004/auth';
 

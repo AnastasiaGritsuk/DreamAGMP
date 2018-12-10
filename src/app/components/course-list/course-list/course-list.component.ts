@@ -4,7 +4,6 @@ import { CourseService } from '../course.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToolbarComponent } from '../../toolbar/toolbar/toolbar.component';
 import { debounceTime } from 'rxjs/operators';
-import { LoadingBlockService } from 'src/app/loading-block/loading-block.service';
 
 @Component({
     selector: 'app-course-list',
