@@ -3,6 +3,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CourseService } from '../../course-list/course.service';
 import { CourseItem } from '../../course-list/course-list-item';
 import { Utils } from '../../shared/utils';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/redux/app-state';
+import * as courseActions from '../../../redux/actions/courses';
 
 @Component({
     selector: 'app-add-course-page',
@@ -14,7 +17,8 @@ export class AddCoursePageComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private courseService: CourseService) { }
+        private courseService: CourseService,
+        private store: Store<AppState>) { }
 
     private isEditMode = false;
 
@@ -36,7 +40,9 @@ export class AddCoursePageComponent implements OnInit {
             this.courseService.updateCourse(this.currentItem);
         } else {
             this.currentItem.id = Utils.uniqueId();
-            this.courseService.createCourse(this.currentItem);
+            
+            this.store.dispatch(new courseActions.AddOne(this.currentItem))
+            //this.courseService.createCourse(this.currentItem);
         }
 
         this.router.navigate(['/'], { relativeTo: this.route });
