@@ -15,8 +15,8 @@ describe('CourseItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CourseItemComponent);
     component = fixture.componentInstance;
-    component.courseItem = {
-        id: '1',
+    component.course = {
+        id: 1,
         title: 'my first course',
         creationDate: '03.31.1990',
         duration: 60,

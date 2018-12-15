@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CourseService } from '../../course-list/course.service';
-import { CourseItem } from '../../course-list/course-list-item';
 import { Utils } from '../../shared/utils';
-import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/redux/app-state';
 import * as courseActions from '../../../redux/actions/courses';
+import { Course } from 'src/app/entities/course';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../../redux/reducers'
 
 @Component({
     selector: 'app-add-course-page',
@@ -13,12 +13,12 @@ import * as courseActions from '../../../redux/actions/courses';
     styleUrls: ['./add-course-page.component.scss']
 })
 export class AddCoursePageComponent implements OnInit {
-    public currentItem: CourseItem = {id: '', title: '', description: '', creationDate: '', duration: null};
+    public currentItem: Course = {id: null, title: '', description: '', creationDate: '', duration: null};
     constructor(
         private router: Router,
         private route: ActivatedRoute,
         private courseService: CourseService,
-        private store: Store<AppState>) { }
+        private store: Store<fromRoot.State>) { }
 
     private isEditMode = false;
 
@@ -39,7 +39,7 @@ export class AddCoursePageComponent implements OnInit {
         if (this.isEditMode) {
             this.courseService.updateCourse(this.currentItem);
         } else {
-            this.currentItem.id = Utils.uniqueId();
+            this.currentItem.id = +Utils.uniqueId();
             
             this.store.dispatch(new courseActions.AddOne(this.currentItem))
             //this.courseService.createCourse(this.currentItem);

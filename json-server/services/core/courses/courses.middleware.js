@@ -27,11 +27,11 @@ module.exports = (server) => {
 
 	router.get('/courses/:id', (req, res, next) => {
 		let coursesDB = server.db.getState().courses;
-		let courseItem = coursesDB.find((item)=> {
+		let course = coursesDB.find((item)=> {
             return item.id === req.params.id;
 		});
 				
-		res.json(courseItem);
+		res.json(course);
 	});
 
 	router.post('/courses', (req, res, next) => {

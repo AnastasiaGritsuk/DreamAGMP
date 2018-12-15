@@ -3,13 +3,13 @@
     [ngClass]="{top: topRated}">
     <div class="card-body">
         <div class="table mb-0 bd-highlight">
-            <div class="p-2 table-cell bd-highlight">{{courseItem.creationDate | date: 'd.M.y'}}</div>
-            <div class="p-2 table-cell bd-highlight">{{courseItem.title | uppercase}}
+            <div class="p-2 table-cell bd-highlight">{{course.creationDate | date: 'd.M.y'}}</div>
+            <div class="p-2 table-cell bd-highlight">{{course.title | uppercase}}
                 <i *ngIf="topRated" class="fas fa-star"></i>
             </div>
-            <div class="p-2 table-cell bd-highlight">{{courseItem.description}}</div>
+            <div class="p-2 table-cell bd-highlight">{{course.description}}</div>
             <div class="p-2 table-cell bd-highlight">
-                {{courseItem.duration | duration}}
+                {{course.duration | duration}}
             </div>
             <div class="p-2 table-cell bd-highlight">
                 <button type="button" class="btn btn-primary btn-sm mr-1" (click)="editItem()">Edit</button>
@@ -18,4 +18,4 @@
         </div>
     </div>
 </div>
-<app-delete-course-modal (action)="onDeleteAction($event)" [item]="courseItem" [isOpen]="showDeleteCourseDialog"></app-delete-course-modal>
+<app-delete-course-modal (action)="onDeleteAction($event)" [item]="course" [isOpen]="showDeleteCourseDialog"></app-delete-course-modal>

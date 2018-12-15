@@ -17,7 +17,7 @@ import { LoginPageModule } from './components/login-page/login-page.module';
 import { ToolbarModule } from './components/toolbar/toolbar.module';
 import { CoursePageModule } from './components/course-page/course-page.module';
 import { StoreModule } from '@ngrx/store';
-import { coursesReducer } from './redux/reducers/courses.reducer';
+import { reducers, metaReducers } from './redux/reducers';
 
 const APP_PROVIDERS = [
     CanActivateGuard
@@ -34,7 +34,7 @@ const APP_PROVIDERS = [
         CoursePageModule,
         HttpClientModule,
         LoadingBlockModule,
-        StoreModule.forRoot({reducer: coursesReducer}),
+        StoreModule.forRoot(reducers, { metaReducers }),
         RouterModule.forRoot(ROUTES, { useHash: true })
     ],
     declarations: [

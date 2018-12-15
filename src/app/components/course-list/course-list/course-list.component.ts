@@ -1,9 +1,12 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { CourseItem } from '../course-list-item';
 import { CourseService } from '../course.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToolbarComponent } from '../../toolbar/toolbar/toolbar.component';
 import { debounceTime } from 'rxjs/operators';
+import { Course } from 'src/app/entities/course';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../../redux/reducers'
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-course-list',
@@ -11,21 +14,23 @@ import { debounceTime } from 'rxjs/operators';
     styleUrls: ['./course-list.component.scss']
 })
 export class CourseListComponent implements OnInit, AfterViewInit {
-    public courses: CourseItem[] = [];
+    public courses$: Observable<Course[]>;
     private maxCoursesCount = 5;
 
     @ViewChild('toolbar') toolbarComponent: ToolbarComponent;
 
     constructor(
         private courseService: CourseService,
-        private route: ActivatedRoute) {}
+        private route: ActivatedRoute,
+        private store: Store<fromRoot.State>) {}
 
     public ngOnInit() {
         // think about how to manage subscriptions
-        this.courseService.getCoursesObservable().subscribe((courses) => {
-            this.courses = courses;
-        });
-        this.courseService.getList(this.maxCoursesCount.toString());
+        // this.courseService.getCoursesObservable().subscribe((courses) => {
+        //     this.courses = courses;
+        // });
+        //this.courseService.getList(this.maxCoursesCount.toString());
+        this.courses$ = this.store.select(fromRoot.getAllCourses);
     }
 
     public ngAfterViewInit() {
@@ -41,7 +46,8 @@ export class CourseListComponent implements OnInit, AfterViewInit {
     }
 
     public get isLoadMore(): boolean {
-        return this.courses.length > this.maxCoursesCount;
+        return true;
+        //return this.courses$.length > this.maxCoursesCount;
     }
 
     private search(queryString: string): void {

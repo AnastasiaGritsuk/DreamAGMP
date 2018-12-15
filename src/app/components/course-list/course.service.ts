@@ -1,22 +1,21 @@
 import { Injectable } from '@angular/core';
-import { CourseItem } from './course-list-item';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { ClientHttpService } from './client-http.service';
 import { LoadingBlockService } from '../loading-block/loading-block.service';
+import { Course } from 'src/app/entities/course';
 
 @Injectable({
     providedIn: 'root'
 })
 export class CourseService {
-    private courses: CourseItem[] = [];
-    private coursesSubject: BehaviorSubject<CourseItem[]> = new BehaviorSubject([]);
+    private courses: Course[] = [];
+    private coursesSubject: BehaviorSubject<Course[]> = new BehaviorSubject([]);
 
     constructor(
         private readonly clientHttpService: ClientHttpService,
         private readonly loadingBlockService: LoadingBlockService) { }
 
-    public getCoursesObservable(): Observable<CourseItem[]> {
+    public getCoursesObservable(): Observable<Course[]> {
         return this.coursesSubject.asObservable();
     }
 
@@ -40,7 +39,7 @@ export class CourseService {
             });
     }
 
-    public createCourse(course: CourseItem): void {
+    public createCourse(course: Course): void {
         this.clientHttpService.createCourse(course)
             .subscribe(response => {
                 this.courses.push(course);
@@ -48,7 +47,7 @@ export class CourseService {
             });
     }
 
-    public updateCourse(course: CourseItem): void {
+    public updateCourse(course: Course): void {
         this.clientHttpService.updateCourse(course)
             .subscribe(response => {
                 const index = this.courses.findIndex((item) => {
@@ -59,7 +58,7 @@ export class CourseService {
             });
     }
 
-    public removeCourse(id: string): void {
+    public removeCourse(id: number): void {
         this.clientHttpService.removeCourse(id)
             .subscribe(response => {
                 const index = this.courses.findIndex((item) => {
@@ -71,7 +70,7 @@ export class CourseService {
             });
     }
 
-    public getCourseById(id: string): Observable<CourseItem> {
+    public getCourseById(id: number): Observable<Course> {
         return this.clientHttpService.getCouresById(id);
     }
 }

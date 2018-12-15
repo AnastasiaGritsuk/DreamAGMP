@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetectionStrategy } from '@angular/core';
-import { CourseItem } from '../course-list-item';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CourseService } from '../course.service';
+import { Course } from 'src/app/entities/course';
 
 @Component({
     selector: 'app-course-item',
@@ -10,7 +10,7 @@ import { CourseService } from '../course.service';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseItemComponent implements OnInit {
-    @Input() public courseItem: CourseItem;
+    @Input() public course: Course;
     @Output() public action: EventEmitter<boolean> = new EventEmitter(false);
 
     public topRated = true;
@@ -29,7 +29,7 @@ export class CourseItemComponent implements OnInit {
     }
 
     public get borderColor(): string {
-        const creationDate = new Date(this.courseItem.creationDate);
+        const creationDate = new Date(this.course.creationDate);
         const currentDate = new Date(new Date().toLocaleDateString());
         const inTwoWeeksDate = new Date(new Date(new Date().toLocaleDateString()).setDate(currentDate.getDate() - 14));
 
@@ -41,12 +41,12 @@ export class CourseItemComponent implements OnInit {
     }
 
     public editItem(): void {
-        this.router.navigate(['./', this.courseItem.id], { relativeTo: this.route });
+        this.router.navigate(['./', this.course.id], { relativeTo: this.route });
     }
 
     public onDeleteAction(isDeleted: boolean) {
         if (isDeleted) {
-            this.courseService.removeCourse(this.courseItem.id);
+            this.courseService.removeCourse(this.course.id);
         }
 
         this.showDeleteCourseDialog = false;
