@@ -13,7 +13,7 @@ import * as fromRoot from '../../../redux/reducers'
     styleUrls: ['./add-course-page.component.scss']
 })
 export class AddCoursePageComponent implements OnInit {
-    public currentItem: Course = {id: null, title: '', description: '', creationDate: '', duration: null};
+    public currentItem: Course = {id: null, title: '', creationDate: '', duration: null, description: ''};
     constructor(
         private router: Router,
         private route: ActivatedRoute,
@@ -39,7 +39,7 @@ export class AddCoursePageComponent implements OnInit {
         if (this.isEditMode) {
             this.courseService.updateCourse(this.currentItem);
         } else {
-            this.currentItem.id = +Utils.uniqueId();
+            this.currentItem.id = + Utils.uniqueId();
             
             this.store.dispatch(new courseActions.AddOne(this.currentItem))
             //this.courseService.createCourse(this.currentItem);

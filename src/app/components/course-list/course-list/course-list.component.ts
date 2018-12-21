@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { CourseService } from '../course.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToolbarComponent } from '../../toolbar/toolbar/toolbar.component';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, filter } from 'rxjs/operators';
 import { Course } from 'src/app/entities/course';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../redux/reducers'
@@ -25,10 +25,7 @@ export class CourseListComponent implements OnInit, AfterViewInit {
         private store: Store<fromRoot.State>) {}
 
     public ngOnInit() {
-        // think about how to manage subscriptions
-        // this.courseService.getCoursesObservable().subscribe((courses) => {
-        //     this.courses = courses;
-        // });
+       
         //this.courseService.getList(this.maxCoursesCount.toString());
         this.courses$ = this.store.select(fromRoot.getAllCourses);
     }
