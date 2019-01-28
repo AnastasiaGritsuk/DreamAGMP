@@ -18,6 +18,8 @@ import { ToolbarModule } from './components/toolbar/toolbar.module';
 import { CoursePageModule } from './components/course-page/course-page.module';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './redux/reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { CoursesEffects } from './redux/epics/courses.effect';
 
 const APP_PROVIDERS = [
     CanActivateGuard
@@ -35,6 +37,7 @@ const APP_PROVIDERS = [
         HttpClientModule,
         LoadingBlockModule,
         StoreModule.forRoot(reducers, { metaReducers }),
+        EffectsModule.forRoot([CoursesEffects]),
         RouterModule.forRoot(ROUTES, { useHash: true })
     ],
     declarations: [
