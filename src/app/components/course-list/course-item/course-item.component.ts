@@ -2,6 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetect
 import { Router, ActivatedRoute } from '@angular/router';
 import { CourseService } from '../course.service';
 import { Course } from 'src/app/entities/course';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../../redux/reducers';
+import * as courseActions from '../../../redux/actions/courses';
 
 @Component({
     selector: 'app-course-item',
@@ -19,6 +22,7 @@ export class CourseItemComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
+        private store: Store<fromRoot.State>,
         private readonly courseService: CourseService) { }
 
     ngOnInit() {
@@ -28,16 +32,19 @@ export class CourseItemComponent implements OnInit {
         this.showDeleteCourseDialog = true;
     }
 
-    public get borderColor(): string {
-        const creationDate = new Date(this.course.creationDate);
-        const currentDate = new Date(new Date().toLocaleDateString());
-        const inTwoWeeksDate = new Date(new Date(new Date().toLocaleDateString()).setDate(currentDate.getDate() - 14));
-
-        if ((creationDate < currentDate) && creationDate >= inTwoWeeksDate) {
-            return 'green';
-        } else if (creationDate > currentDate) {
-            return 'blue';
+    public get borderColor(): string { // do like directive
+        if (this.course) {
+            const creationDate = new Date(this.course.creationDate);
+            const currentDate = new Date(new Date().toLocaleDateString());
+            const inTwoWeeksDate = new Date(new Date(new Date().toLocaleDateString()).setDate(currentDate.getDate() - 14));
+    
+            if ((creationDate < currentDate) && creationDate >= inTwoWeeksDate) {
+                return 'green';
+            } else if (creationDate > currentDate) {
+                return 'blue';
+            }
         }
+        
     }
 
     public editItem(): void {
@@ -46,7 +53,8 @@ export class CourseItemComponent implements OnInit {
 
     public onDeleteAction(isDeleted: boolean) {
         if (isDeleted) {
-            this.courseService.removeCourse(this.course.id);
+            //this.courseService.removeCourse(this.course.id);
+            this.store.dispatch(new courseActions.deleteOne(this.course.id));
         }
 
         this.showDeleteCourseDialog = false;

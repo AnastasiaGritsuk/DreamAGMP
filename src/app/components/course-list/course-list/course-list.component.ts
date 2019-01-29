@@ -28,6 +28,7 @@ export class CourseListComponent implements OnInit, AfterViewInit {
        
         //this.courseService.getList(this.maxCoursesCount.toString());
         this.courses$ = this.store.select(fromRoot.getAllCourses);
+        console.log('changed courses ' + this.courses$);
     }
 
     public ngAfterViewInit() {

@@ -35,8 +35,6 @@ export const initialState: State = {
 };
 
 export function reducer(state = initialState, action: courseAction.Action) {
-    console.log(action.type, state);
-
     switch(action.type) {
         case 'ADD_ONE':
             const newCourse = action.payload;
@@ -50,9 +48,21 @@ export function reducer(state = initialState, action: courseAction.Action) {
         // case 'UPDATE_COURSE':
         //     console.log('in update');
         //     return state;
-        // case 'DELETE_COURSE':
-        //     console.log('in delete');
-        //     return state;
+
+        
+        case 'DELETE_COURSE_SUCCEDED':
+            console.log('in delete');
+            const id = action.payload;
+            const index = state.ids.findIndex(e => e === id);
+            const newState = state.courses;
+            delete newState[id];
+
+            let obj = {
+                ...state,
+                ids: [...state.ids.slice(0, index), ...state.ids.slice(state.ids.length)],
+                courses: {...newState}
+            };
+            return obj;
         // case 'FIND_COURSE_BY_ID':
         //     console.log('in find by id');
         //     return state;

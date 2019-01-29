@@ -26,6 +26,19 @@ export class CoursesEffects {
                     )
             )
         )
+    
+    @Effect()
+    deleteCourse$: Observable<Action> = this.actions$
+        .pipe(
+            ofType<courseActions.deleteOne>(courseActions.DELETE_ONE),
+            switchMap(action => 
+                this.courseService
+                .removeCourse(action.payload)
+                .pipe(
+                    map(() => new courseActions.deleteCourseSucceded(action.payload)),
+                    catchError(error => of(new courseActions.deleteCourseFailed(error)))
+                ))
+        )
 }
 
 
