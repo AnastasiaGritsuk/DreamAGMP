@@ -41,7 +41,7 @@ export class AddCoursePageComponent implements OnInit {
         } else {
             this.currentItem.id = + Utils.uniqueId();
             
-            this.store.dispatch(new courseActions.AddOne(this.currentItem))
+            this.store.dispatch(new courseActions.addOne(this.currentItem))
             //this.courseService.createCourse(this.currentItem);
         }
 

@@ -20,13 +20,13 @@ export class BreadcrumbsComponent implements OnInit {
     // filter(event => event instanceof NavigationEnd)
 
     ngOnInit() {
-        const ROUTE_DATA_BREADCRUMB = 'breadcrumb';
-        this.router.events
-        .pipe(
-            filter((event: Event) => event instanceof NavigationEnd),
-            map(event => this.breadcrumbs = this.getBreadcrumbs(this.activatedRoute.root))
-        )
-        .subscribe();
+        // const ROUTE_DATA_BREADCRUMB = 'breadcrumb';
+        // this.router.events
+        // .pipe(
+        //     filter((event: Event) => event instanceof NavigationEnd),
+        //     map(event => this.breadcrumbs = this.getBreadcrumbs(this.activatedRoute.root))
+        // )
+        // .subscribe();
     }
 
     private getBreadcrumbs(

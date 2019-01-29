@@ -3,7 +3,8 @@ import { Effect, Actions, ofType } from '@ngrx/effects';
 import { ClientHttpService } from "src/app/components/course-list/client-http.service";
 import * as courseActions from '../actions/courses';
 import { switchMap, catchError, map } from "rxjs/operators";
-import { of } from "rxjs";
+import { of, Observable } from "rxjs";
+import { Action } from "@ngrx/store";
 
 @Injectable()
 export class CoursesEffects {
@@ -13,15 +14,15 @@ export class CoursesEffects {
     ) {}
 
     @Effect()
-    addCourse = this.actions$
+    addCourse$: Observable<Action> = this.actions$
         .pipe(
-            ofType(courseActions.ADD_ONE),
+            ofType<courseActions.addOne>(courseActions.ADD_ONE),
             switchMap(action => 
                 this.courseService
                     .createCourse(action.payload)
                     .pipe(
-                        map(()=> new courseActions.SaveCourseSucceded()),
-                        catchError(error => of(new courseActions.SaveCourseFailed(error)))
+                        map(()=> new courseActions.saveCourseSucceded()),
+                        catchError(error => of(new courseActions.saveCourseFailed(error)))
                     )
             )
         )
