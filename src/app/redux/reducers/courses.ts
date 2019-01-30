@@ -54,18 +54,14 @@ export function reducer(state = initialState, action: courseAction.Action) {
             console.log('in delete');
             const id = action.payload;
             const index = state.ids.findIndex(e => e === id);
-            const newState = state.courses;
-            delete newState[id];
+            const { [id]: deleted, ...rest }  = state.courses
 
-            let obj = {
+            return {
                 ...state,
-                ids: [...state.ids.slice(0, index), ...state.ids.slice(state.ids.length)],
-                courses: {...newState}
+                ids: [...state.ids.slice(0, index), ...state.ids.slice(index + 1,state.ids.length)],
+                courses: rest
             };
-            return obj;
-        // case 'FIND_COURSE_BY_ID':
-        //     console.log('in find by id');
-        //     return state;
+
         default:
             return state;
     }
